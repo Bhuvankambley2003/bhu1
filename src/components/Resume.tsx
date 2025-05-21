@@ -363,7 +363,6 @@ const Resume = () => {
       </motion.div>
     );
   };
-
   // Navigation component 
   const Navigation = () => {
     const sections = [
@@ -374,6 +373,18 @@ const Resume = () => {
       { name: "Certifications", href: "#certifications" },
       { name: "Achievements", href: "#achievements" },
     ];
+    
+    // Function to handle navigation to next section
+    const navigateToNextSection = (currentIndex: number) => {
+      const nextIndex = (currentIndex + 1) % sections.length;
+      window.location.href = sections[nextIndex].href;
+    };
+    
+    // Function to handle navigation to previous section
+    const navigateToPrevSection = (currentIndex: number) => {
+      const prevIndex = (currentIndex - 1 + sections.length) % sections.length;
+      window.location.href = sections[prevIndex].href;
+    };
 
     return (
       <motion.div 
@@ -382,19 +393,27 @@ const Resume = () => {
         transition={{ duration: 0.6, delay: 0.3 }}
         className="sticky top-4 z-50 flex justify-center mx-auto mb-10 px-4"
       >
-        <nav className="bg-foreground/[0.03] backdrop-blur-lg border border-foreground/10 rounded-full py-2 px-3 shadow-lg flex items-center overflow-x-auto max-w-full no-scrollbar">
-          <ul className="flex space-x-1 sm:space-x-2">
-            {sections.map((section, index) => (
-              <li key={index}>
-                <a 
-                  href={section.href}
-                  className="px-3 py-1.5 text-sm font-medium text-foreground/70 hover:text-foreground/100 rounded-full hover:bg-foreground/[0.06] transition-colors whitespace-nowrap"
-                >
-                  {section.name}
-                </a>
-              </li>
-            ))}
-          </ul>
+        <nav className="bg-foreground/[0.03] backdrop-blur-lg border border-foreground/10 rounded-full py-2 px-3 shadow-lg flex items-center overflow-hidden">
+          {/* Previous Button */}
+          
+          
+          <div className="overflow-x-auto no-scrollbar flex-grow">
+            <ul className="flex space-x-1 sm:space-x-2 px-1">
+              {sections.map((section, index) => (
+                <li key={index}>
+                  <a 
+                    href={section.href}
+                    className="px-3 py-1.5 text-sm font-medium text-foreground/70 hover:text-foreground/100 transition-colors whitespace-nowrap"
+                  >
+                    {section.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          
+          {/* Next Button */}
+          
         </nav>
       </motion.div>
     );
