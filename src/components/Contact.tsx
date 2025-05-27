@@ -32,7 +32,7 @@ const Contact: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <span className="mr-6">03.</span>Say Hello👋
+            <span className="mr-5">04.</span>Say Hello👋
           </motion.h2>
           <motion.div 
             className="w-20 h-1 bg-gradient-to-r from-accent to-accent/50 mx-auto rounded-full mb-6"

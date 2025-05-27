@@ -231,7 +231,7 @@ const Projects: React.FC = () => {
             viewport={{ once: true }}
             className="text-3xl md:text-4xl font-display font-bold mt-4"
           >
-            <span className="mr-6">02.</span>My Recent Work
+            <span className="mr-6">03.</span>My Recent Work
           </motion.h2>
           {/* <motion.div 
             initial={{ scaleX: 0 }}

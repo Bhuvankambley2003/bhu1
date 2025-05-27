@@ -1,22 +1,35 @@
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Award, Building2, Calendar, ChevronRight, Download, LinkIcon, Mail, MapPin } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { Award, Building2, Calendar, MapPin } from "lucide-react";
 
 const Resume = () => {
+  // ========================
+  // Data Section
+  // ========================
+  
+  const summary = "Detail-oriented Computer Science Engineer and Full-Stack Developer with expertise in cloud-based solutions, machine learning, and modern web development frameworks. Passionate about leveraging technology to create scalable and efficient solutions with demonstrable outcomes.";
+
   // Experience data
   const experiences = [
     {
       title: "SDE Intern",
       subtitle: "Vegam Solutions Delaware",
       period: "2025 - Present",
-      description: "Led the end-to-end development of StockForge, an advanced cloud-based full-stack solution for inventory management, utilizing Django, AWS, and PostgreSQL. Achieved annual time savings of ≈250 man-hours."
+      bullets: [
+        "Led end-to-end development of StockForge, a cloud-based inventory management solution",
+        "Utilized Django, AWS, and PostgreSQL to build a full-stack solution",
+        "Achieved annual time savings of ≈250 man-hours through process automation"
+      ]
     },
     {
       title: "Machine Learning Intern",
       subtitle: "Dotch Endeavours pvt ltd",
       period: "Oct - Nov 2023",
-      description: "Spearheaded the development of a Parkinson's disease prediction algorithm, leveraging neural networks and TensorFlow, achieving 92% accuracy. Supported departmental needs while gaining foundational knowledge in Scikit-learn. Utilized version control (Git) for code management and collaborated effectively using GitHub."
+      bullets: [
+        "Developed a Parkinson's disease prediction algorithm with 92% accuracy",
+        "Implemented neural networks and TensorFlow for deep learning models",
+        "Utilized version control (Git) for collaborative code management"
+      ]
     }
   ];
 
@@ -26,13 +39,14 @@ const Resume = () => {
       title: "BE in Computer Science",
       subtitle: "The National Institute of Engineering Mysuru",
       period: "2021 - 2025",
-      description: "Specialized in Cloud Technologies, Machine Learning, and Full Stack Development beyond academic coursework."
+      gpa: "3.8/4.0",
+      highlights: "Specialized in Cloud Technologies, Machine Learning, and Full Stack Development"
     },
     {
       title: "Class 5 - Class 12",
       subtitle: "Sri Vidya Kendra",
       period: "2014 - 2021",
-      description: "Studied CBSE board with a focus on Mathematics, Science and Computer Science."
+      highlights: "CBSE board with focus on Mathematics, Science and Computer Science"
     }
   ];
 
@@ -80,28 +94,6 @@ const Resume = () => {
     }
   ];
 
-  // Certifications data
-  const certifications = [
-    {
-      title: "AWS Knowledge: Architecting",
-      issuer: "Amazon Web Services",
-      date: "2025",
-      description: "Cloud architecture fundamentals and best practices on AWS platform."
-    },
-    {
-      title: "IBM Data Analysis",
-      issuer: "IBM",
-      date: "2024",
-      description: "Professional data analysis techniques and tools certified by IBM."
-    },
-    {
-      title: "Google Data Data Everywhere",
-      issuer: "Google",
-      date: "2023",
-      description: "Data analytics fundamentals and practices by Google."
-    }
-  ];
-
   // Achievements data
   const achievements = [
     {
@@ -110,178 +102,210 @@ const Resume = () => {
     }
   ];
 
-  // AboutMeSection component
-  const AboutMeSection = () => {
-    const aboutMeData = {
-      name: "Bhuvan Kambley",
-      title: "Computer Science Engineer",
-      bio: "I'm **Bhuvan Kambley**, a highly driven **Full-Stack Developer** with a deep curiosity for Machine Learning and Artificial Intelligence. Currently pursuing my Bachelor's degree in Computer Science and Engineering at the National Institute of Engineering, Mysuru. I bring together academic excellence with hands-on industry experience across software engineering and intelligent systems.\n\nAt Vegam Solutions, I'm developing **StockForge**—a cloud-based solution designed to streamline inventory and production management for manufacturing enterprises.\nI take pride in being an **enthusiastic and conscientious team player** with exceptional communication and soft skills. I am passionate about learning new skills, keeping up with emerging tech trends, and identifying the best technologies to enhance our solutions. Furthermore, I believe in giving back to society and actively participate in volunteering activities to create a positive impact.",
-      image: "/bk.jpg",
-      location: "Bengaluru, India",
-      experience: "Intern",
-      availability: "Full Time",
-      website: "https://bhuvankambley-portfolio.vercel.app",
-    };
+  // ========================
+  // Component Definitions
+  // ========================
 
-    return (
-      <section id="ResumeSection" className="mb-20">
-      <div id="ResumeSection" className="glass p-4 sm:p-6 md:p-8 rounded-2xl mb-16 bg-foreground border border-foreground/10 backdrop-blur-sm w-full">
-      <div className="flex flex-col-reverse md:flex-row gap-8 items-center md:items-start ">
-        {/* Left Side - Bio and Text Content */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="flex flex-col flex-1"
-        >
-          <h1 className="heading-md text-4xl font-medium tracking-tight ">
-            <span className="mr-6">01.</span>About Me
-          </h1> 
+  // AboutMeSection component - Refined for professional appeal
+  // const AboutMeSection = () => {
+  //   const aboutMeData = {
+  //     name: "Bhuvan Kambley",
+  //     title: "Computer Science Engineer",
+  //     bio: "I'm **Bhuvan Kambley**, a highly driven **Full-Stack Developer** with a deep curiosity for Machine Learning and Artificial Intelligence. Currently pursuing my Bachelor's degree in Computer Science and Engineering at the National Institute of Engineering, Mysuru. I bring together academic excellence with hands-on industry experience across software engineering and intelligent systems.\n\nAt Vegam Solutions, I'm developing **StockForge**—a cloud-based solution designed to streamline inventory and production management for manufacturing enterprises.\nI take pride in being an **enthusiastic and conscientious team player** with exceptional communication and soft skills. I am passionate about learning new skills, keeping up with emerging tech trends, and identifying the best technologies to enhance our solutions. Furthermore, I believe in giving back to society and actively participate in volunteering activities to create a positive impact.",
+  //     image: "/bk.jpg",
+  //     location: "Bengaluru, India",
+  //     experience: "SDE Intern",
+  //     availability: "Available from May 2025",
+  //     website: "https://bhuvankambley-portfolio.vercel.app",
+  //     email: "bhuvankambley@gmail.com",
+  //     github: "github.com/bhuvankambley",
+  //     linkedin: "linkedin.com/in/bhuvankambley",
+  //   };
 
-          <div className="flex flex-wrap gap-y-2 gap-x-6 text-sm text-foreground/70 mt-3 justify-center">
-                  <div className="flex items-center gap-2">
-                    <MapPin className="w-4 h-4" />
-                    <span>{aboutMeData.location}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Building2 className="w-4 h-4" />
-                    <span>{aboutMeData.experience}</span>
-                  </div>
-          </div>        
-          {/* <motion.div 
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
-            viewport={{ once: true }}
-            className="w-28 h-1 bg-gradient-to-r from-accent to-accent/50 md:mx-0 rounded-full mb-6 origin-left"
-          /> */}
-          <div className="subtitle mb-6"></div>
-          
-          <div className="flex flex-col md:flex-row gap-8 items-center md:items-start">
-            <div 
-              className="text-foreground/80 leading-relaxed text-default text-center md:text-left"
-              dangerouslySetInnerHTML={{ 
-                __html: aboutMeData.bio
-                  .replace(/\*\*(.*?)\*\*/g, '<strong class="text-foreground font-semibold">$1</strong>')
-                  .replace(/\n\n/g, '<br /><br />') 
-              }}
-            />
-          
-            {/* Right Side - Profile Photo - Moved inside the content area */}
-            <motion.div 
-              className="flex-shrink-0 relative mb-8 md:mb-0 mt-4 md:mt-0"
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <motion.div 
-                className="w-60 h-85   relative z-10 overflow-hidden rounded-md shadow-xl bg-gradient-to-br from-accent/5 to-accent/30 p-1 transition-all duration-300 hover:shadow-accent/20 hover:shadow-2xl"
-                whileHover={{ scale: 1.03 }}
-                transition={{ duration: 0.3 }}
-              >
-                <div className="w-full h-full overflow-hidden rounded-md">
-                  <img 
-                    src={aboutMeData.image} 
-                    alt="Profile" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                
-                {/* Animated dots */}
-                <div className="absolute -bottom-2 -right-2 flex gap-1">
-                  <div className="h-3 w-3 rounded-full bg-accent animate-pulse-soft"></div>
-                  <div className="h-3 w-3 rounded-full bg-accent/80 animate-pulse-soft" style={{ animationDelay: '0.3s' }}></div>
-                  <div className="h-3 w-3 rounded-full bg-accent/60 animate-pulse-soft" style={{ animationDelay: '0.6s' }}></div>
-                </div>
-              </motion.div>
+  //   return (
+  //     <div className="space-y-8">
+  //       {/* Professional Header Section */}
+  //       <div className="flex flex-col md:flex-row gap-8 items-center md:items-start">
+  //         {/* Profile Photo with Professional Styling */}
+  //         <motion.div 
+  //           className="flex-shrink-0 relative"
+  //           initial={{ opacity: 0, scale: 0.95 }}
+  //           animate={{ opacity: 1, scale: 1 }}
+  //           transition={{ duration: 0.5 }}
+  //         >
+  //           <div className="w-52 h-52 md:w-64 md:h-64 relative z-10 overflow-hidden rounded-xl shadow-xl">
+  //             {/* Professional border styling */}
+  //             <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-primary/5 rounded-xl p-[2px] z-0">
+  //               <div className="w-full h-full bg-background/50 backdrop-blur-sm rounded-xl"></div>
+  //             </div>
               
-              {/* Decorative elements */}
-              {/* <motion.div 
-                className="absolute -top-5 -left-5 w-full h-full rounded-md border-2 border-dashed border-accent/20 z-0"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              />
-              <motion.div 
-                className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-br from-accent/20 to-transparent rounded-md z-0 animate-pulse-soft"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-              /> */}
-            </motion.div>
-          </div>
-        </motion.div>
-      </div>
-    </div>
-  </section>
-  );
-};
+  //             {/* Actual image with professional framing */}
+  //             <div className="absolute inset-[3px] overflow-hidden rounded-lg z-10">
+  //               <img 
+  //                 src={aboutMeData.image} 
+  //                 alt={`${aboutMeData.name} - ${aboutMeData.title}`}
+  //                 className="w-full h-full object-cover"
+  //               />
+  //             </div>
+  //           </div>
+  //         </motion.div>
+          
+  //         {/* Professional Bio Section */}
+  //         <div className="flex-1">
+  //           {/* Name and Title with clear hierarchy */}
+  //           <div className="mb-4 text-center md:text-left">
+  //             <h2 className="text-2xl md:text-3xl font-bold text-foreground tracking-tight">{aboutMeData.name}</h2>
+  //             <p className="text-lg md:text-xl text-primary/90 font-medium mt-1">{aboutMeData.title}</p>
+  //           </div>
+            
+  //           {/* Professional Details - Organized for quick scanning */}
+  //           <div className="flex flex-wrap gap-y-3 gap-x-5 text-sm mb-5 justify-center md:justify-start">
+  //             <div className="flex items-center gap-2 text-foreground/70 hover:text-foreground transition-colors">
+  //               <MapPin className="w-4 h-4 text-primary/80" />
+  //               <span>{aboutMeData.location}</span>
+  //             </div>
+  //             <div className="flex items-center gap-2 text-foreground/70 hover:text-foreground transition-colors">
+  //               <Building2 className="w-4 h-4 text-primary/80" />
+  //               <span>{aboutMeData.experience}</span>
+  //             </div>
+  //             <div className="flex items-center gap-2 text-foreground/70 hover:text-foreground transition-colors">
+  //               <Calendar className="w-4 h-4 text-primary/80" />
+  //               <span>{aboutMeData.availability}</span>
+  //             </div>
+  //           </div>
+            
+  //           {/* Professional Bio Text - Formatted for readability */}
+  //           <div 
+  //             className="text-foreground/80 leading-relaxed text-base md:text-[15px] text-center md:text-left"
+  //             dangerouslySetInnerHTML={{ 
+  //               __html: aboutMeData.bio
+  //                 .replace(/\*\*(.*?)\*\*/g, '<strong class="text-foreground font-semibold">$1</strong>')
+  //                 .replace(/\n\n/g, '<br /><br />') 
+  //             }}
+  //           />
+            
+  //           {/* Professional Contact Links */}
+  //           {/* <div className="mt-5 flex flex-wrap gap-3 justify-center md:justify-start">
+  //             <a 
+  //               href={`https://${aboutMeData.github}`}
+  //               target="_blank"
+  //               rel="noopener noreferrer"
+  //               className="flex items-center gap-1.5 px-3 py-1.5 bg-foreground/5 hover:bg-foreground/10 rounded-md text-sm transition-colors border border-foreground/10"
+  //             >
+  //               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  //                 <path d="M12 0C5.37 0 0 5.37 0 12C0 17.31 3.435 21.795 8.205 23.385C8.805 23.49 9.03 23.13 9.03 22.815C9.03 22.53 9.015 21.585 9.015 20.58C6 21.135 5.22 19.845 4.98 19.17C4.845 18.825 4.26 17.76 3.75 17.475C3.33 17.25 2.73 16.695 3.735 16.68C4.68 16.665 5.355 17.55 5.58 17.91C6.66 19.725 8.385 19.215 9.075 18.9C9.18 18.12 9.495 17.595 9.84 17.295C7.17 16.995 4.38 15.96 4.38 11.37C4.38 10.065 4.845 8.985 5.61 8.145C5.49 7.845 5.07 6.615 5.73 4.965C5.73 4.965 6.735 4.65 9.03 6.195C9.99 5.925 11.01 5.79 12.03 5.79C13.05 5.79 14.07 5.925 15.03 6.195C17.325 4.635 18.33 4.965 18.33 4.965C18.99 6.615 18.57 7.845 18.45 8.145C19.215 8.985 19.68 10.05 19.68 11.37C19.68 15.975 16.875 16.995 14.205 17.295C14.64 17.67 15.015 18.39 15.015 19.515C15.015 21.12 15 22.41 15 22.815C15 23.13 15.225 23.505 15.825 23.385C18.2072 22.5807 20.2772 21.0497 21.7437 19.0074C23.2101 16.965 23.9993 14.5143 24 12C24 5.37 18.63 0 12 0Z"></path>
+  //               </svg>
+  //               GitHub
+  //             </a>
+  //             <a 
+  //               href={`https://${aboutMeData.linkedin}`}
+  //               target="_blank"
+  //               rel="noopener noreferrer"
+  //               className="flex items-center gap-1.5 px-3 py-1.5 bg-foreground/5 hover:bg-foreground/10 rounded-md text-sm transition-colors border border-foreground/10"
+  //             >
+  //               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  //                 <path d="M20.447 20.452H16.893V14.883C16.893 13.555 16.866 11.846 15.041 11.846C13.188 11.846 12.905 13.291 12.905 14.785V20.452H9.351V9H12.765V10.561H12.811C13.288 9.661 14.448 8.711 16.181 8.711C19.782 8.711 20.448 11.081 20.448 14.166V20.452H20.447ZM5.337 7.433C4.193 7.433 3.274 6.507 3.274 5.368C3.274 4.23 4.194 3.305 5.337 3.305C6.477 3.305 7.401 4.23 7.401 5.368C7.401 6.507 6.476 7.433 5.337 7.433ZM7.119 20.452H3.555V9H7.119V20.452Z"></path>
+  //               </svg>
+  //               LinkedIn
+  //             </a>
+  //             <a 
+  //               href={aboutMeData.website}
+  //               target="_blank"
+  //               rel="noopener noreferrer"
+  //               className="flex items-center gap-1.5 px-3 py-1.5 bg-foreground/5 hover:bg-foreground/10 rounded-md text-sm transition-colors border border-foreground/10"
+  //             >
+  //               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  //                 <circle cx="12" cy="12" r="10"></circle>
+  //                 <line x1="2" y1="12" x2="22" y2="12"></line>
+  //                 <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+  //               </svg>
+  //               Portfolio
+  //             </a>
+  //             <a 
+  //               href={`mailto:${aboutMeData.email}`}
+  //               className="flex items-center gap-1.5 px-3 py-1.5 bg-primary/10 hover:bg-primary/15 rounded-md text-sm transition-colors border border-primary/20 text-primary-foreground"
+  //             >
+  //               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  //                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+  //                 <polyline points="22,6 12,13 2,6"></polyline>
+  //               </svg>
+  //               Contact Me
+  //             </a>
+  //           </div> */}
+  //         </div>
+  //       </div>
 
+  //       {/* Professional Summary - Clear and concise for recruiters */}
+  //       <div className="bg-foreground/[0.02] border border-foreground/10 rounded-xl p-5 mt-6">
+  //         <h3 className="text-lg font-medium mb-2 text-primary/90">Professional Summary</h3>
+  //         <p className="text-foreground/80 leading-relaxed">{summary}</p>
+  //       </div>
 
-  // ResumeSection component
-  const ResumeSection = ({ title, children, id }: { title: string, children: React.ReactNode, id?: string }) => {
-    return (
-      <motion.section 
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true, margin: "-100px" }}
-        className="mb-20"
-        id={id || title.toLowerCase().replace(/\s+/g, '-')}
-      >
-        <div className="mb-8">
-          <motion.h2 
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            viewport={{ once: true }}
-            className="text-3xl font-semibold tracking-tight"
-          >
-            {title}
-          </motion.h2>
-          {/* <motion.div 
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="w-20 h-1 bg-primary/50 rounded-full mt-3 origin-left"
-          /> */}
-        </div>
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          viewport={{ once: true }}
-        >
-          {children}
-        </motion.div>
-      </motion.section>
-    );
-  };
+  //       {/* Key Skills Highlight - Quick overview for recruiters */}
+  //       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2">
+  //         <div className="bg-foreground/[0.02] border border-foreground/10 rounded-xl p-4 flex flex-col items-center text-center">
+  //           <div className="bg-primary/10 rounded-full p-3 mb-3">
+  //             <svg className="w-6 h-6 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  //               <path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"></path>
+  //               <path d="M12 12l8-4.5"></path>
+  //               <path d="M12 12v9"></path>
+  //               <path d="M12 12L4 7.5"></path>
+  //             </svg>
+  //           </div>
+  //           <h3 className="font-medium text-foreground">Full-Stack Development</h3>
+  //           <p className="text-sm text-foreground/70 mt-1">Building end-to-end solutions with modern frameworks</p>
+  //         </div>
+          
+  //         <div className="bg-foreground/[0.02] border border-foreground/10 rounded-xl p-4 flex flex-col items-center text-center">
+  //           <div className="bg-primary/10 rounded-full p-3 mb-3">
+  //             <svg className="w-6 h-6 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  //               <path d="M16 16v1a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h2"></path>
+  //               <path d="M9 15V9"></path>
+  //               <path d="M12 12L9 9"></path>
+  //               <path d="M12 12L9 15"></path>
+  //               <rect x="16" y="5" width="6" height="14" rx="2"></rect>
+  //             </svg>
+  //           </div>
+  //           <h3 className="font-medium text-foreground">Machine Learning</h3>
+  //           <p className="text-sm text-foreground/70 mt-1">Implementing intelligent systems with TensorFlow and PyTorch</p>
+  //         </div>
+          
+  //         <div className="bg-foreground/[0.02] border border-foreground/10 rounded-xl p-4 flex flex-col items-center text-center">
+  //           <div className="bg-primary/10 rounded-full p-3 mb-3">
+  //             <svg className="w-6 h-6 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  //               <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+  //               <polyline points="22 4 12 14.01 9 11.01"></polyline>
+  //             </svg>
+  //           </div>
+  //           <h3 className="font-medium text-foreground">Problem Solving</h3>
+  //           <p className="text-sm text-foreground/70 mt-1">Analytical approach to technical challenges</p>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   );
+  // };
 
   // TimelineItem component
-  const TimelineItem = ({ title, subtitle, period, description, index, icon }: { 
+  const TimelineItem = ({ title, subtitle, period, description, bullets, index }: { 
     title: string, 
     subtitle: string, 
     period: string, 
-    description: string, 
-    index: number,
-    icon?: React.ReactNode
+    description?: string, 
+    bullets?: string[],
+    index: number
   }) => {
     return (
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: index * 0.1 }}
-        viewport={{ once: true }}
-        className="group bg-foreground/[0.02] hover:bg-foreground/[0.05] rounded-xl p-6 transition-all duration-300 border border-foreground/10"
+        className="group bg-foreground/[0.02] hover:bg-foreground/[0.05] rounded-xl p-6 transition-all duration-300 border border-foreground/10 mb-6"
       >
         <div className="space-y-4">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div>
-              <h3 className="font-semibold text-xl tracking-tight text-primary group-hover:text-primary/90 transition-color text-left">{title}</h3>
-              <div className="flex items-center mt-1 text-foreground/70">
-                {/* {icon || <Building2 className="w-4 h-4 mr-2" />} */}
+              <h3 className="font-semibold text-lg tracking-tight text-primary group-hover:text-primary/90 transition-color text-left">{title}</h3>
+              <div className="flex items-center mt-1 text-foreground/70 text-lg">
                 <span>{subtitle}</span>
               </div>
             </div>
@@ -291,7 +315,17 @@ const Resume = () => {
             </div>
           </div>
           
-          <p className="text-foreground/70 leading-relaxed text-left text-base">{description}</p>
+          {description && (
+            <p className="text-foreground/70 leading-relaxed text-left text-base">{description}</p>
+          )}
+
+          {bullets && bullets.length > 0 && (
+            <ul className="list-disc ml-5 space-y-1.5 text-foreground/80">
+              {bullets.map((bullet, idx) => (
+                <li key={idx} className="text-left text-base">{bullet}</li>
+              ))}
+            </ul>
+          )}
         </div>
       </motion.div>
     );
@@ -305,11 +339,10 @@ const Resume = () => {
   }) => {
     return (
       <motion.div 
-        className="bg-foreground/[0.02] border border-foreground/10 p-6 rounded-xl backdrop-blur-sm"
+        className="bg-foreground/[0.02] border border-foreground/10 p-6 rounded-xl backdrop-blur-sm mb-6"
         initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: index * 0.1 }}
-        viewport={{ once: true }}
       >
         <h3 className="text-lg font-medium mb-5 text-primary/90">{title}</h3>
         <div className="flex flex-wrap gap-2">
@@ -317,10 +350,9 @@ const Resume = () => {
             <motion.div 
               key={idx}
               initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3, delay: 0.1 + idx * 0.05 }}
-              viewport={{ once: true }}
-              className="bg-foreground/[0.05] hover:bg-foreground/[0.08] border border-foreground/10 px-3 py-1.5 rounded-full text-sm transition-colors"
+              className="bg-foreground/[0.05] hover:bg-foreground/[0.08] border border-foreground/10 px-3 py-1.5 rounded-full text-sm transition-colors text-base"
             >
               {skill.name}
             </motion.div>
@@ -331,244 +363,212 @@ const Resume = () => {
   };
 
   // AchievementCard component
-  const AchievementCard = ({ title, issuer, date, description, index }: { 
+  const AchievementCard = ({ title, description, index }: { 
     title: string, 
-    issuer?: string, 
-    date?: string, 
     description?: string, 
     index: number 
   }) => {
     return (
       <motion.div 
-        className="bg-foreground/[0.02] border border-foreground/10 p-6 rounded-xl flex gap-5"
+        className="bg-foreground/[0.02] border border-foreground/10 p-6 rounded-xl flex gap-5 mb-6"
         initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: index * 0.1 }}
-        viewport={{ once: true }}
       >
         <div className="bg-primary/10 rounded-full p-3 h-fit">
           <Award className="text-primary w-6 h-6" />
         </div>
         <div>
           <h3 className="font-semibold text-xl mb-2">{title}</h3>
-          {(issuer || date) && (
-            <div className="flex flex-wrap gap-2 text-sm text-foreground/70 mb-2">
-              {issuer && <span>{issuer}</span>}
-              {issuer && date && <span>•</span>}
-              {date && <span>{date}</span>}
-            </div>
-          )}
-          {description && <p className="text-foreground/70 leading-relaxed">{description}</p>}
+          {description && <p className="text-foreground/70 leading-relaxed text-base">{description}</p>}
         </div>
       </motion.div>
     );
-  };
-  // Navigation component 
-  const Navigation = () => {
-    const sections = [
-      { name: "About", href: "#about" },
-      { name: "Experience", href: "#experience" },
-      { name: "Education", href: "#education" },
-      { name: "Skills", href: "#skills" },
-      { name: "Certifications", href: "#certifications" },
-      { name: "Achievements", href: "#achievements" },
-    ];
-    
-    // Function to handle navigation to next section
-    const navigateToNextSection = (currentIndex: number) => {
-      const nextIndex = (currentIndex + 1) % sections.length;
-      window.location.href = sections[nextIndex].href;
-    };
-    
-    // Function to handle navigation to previous section
-    const navigateToPrevSection = (currentIndex: number) => {
-      const prevIndex = (currentIndex - 1 + sections.length) % sections.length;
-      window.location.href = sections[prevIndex].href;
-    };
+  }; 
 
-    return (
-      <motion.div 
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.3 }}
-        className="sticky top-4 z-50 flex justify-center mx-auto mb-10 px-4"
-      >
-        <nav className="bg-foreground/[0.03] backdrop-blur-lg border border-foreground/10 rounded-full py-2 px-3 shadow-lg flex items-center overflow-hidden">
-          {/* Previous Button */}
-          
-          
-          <div className="overflow-x-auto no-scrollbar flex-grow">
-            <ul className="flex space-x-1 sm:space-x-2 px-1">
-              {sections.map((section, index) => (
-                <li key={index}>
-                  <a 
-                    href={section.href}
-                    className="px-3 py-1.5 text-sm font-medium text-foreground/70 hover:text-foreground/100 transition-colors whitespace-nowrap"
-                  >
-                    {section.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-          
-          {/* Next Button */}
-          
-        </nav>
-      </motion.div>
-    );
+  // ========================
+  // Main Component Logic
+  // ========================
+  
+  // Section definitions
+  const sections = [
+    // { id: "about", title: "About Me", component: <AboutMeSection /> },
+    { 
+      id: "experience", 
+      title: "Experience", 
+      component: (
+        <div>
+          {experiences.map((experience, index) => (
+            <TimelineItem 
+              key={index}
+              title={experience.title}
+              subtitle={experience.subtitle}
+              period={experience.period}
+              bullets={experience.bullets}
+              index={index}
+            />
+          ))}
+        </div>
+      ) 
+    },
+    { 
+      id: "education", 
+      title: "Education", 
+      component: (
+        <div>
+          {education.map((edu, index) => (
+            <TimelineItem 
+              key={index}
+              title={edu.title}
+              subtitle={edu.subtitle}
+              period={edu.period}
+              description={edu.highlights}
+              index={index}
+            />
+          ))}
+        </div>
+      ) 
+    },
+    { 
+      id: "skills", 
+      title: "Skills", 
+      component: (
+        <div>
+          {skillCategories.map((category, index) => (
+            <SkillCategory 
+              key={index}
+              title={category.title}
+              skills={category.skills}
+              index={index}
+            />
+          ))}
+        </div>
+      ) 
+    },
+    { 
+      id: "achievements", 
+      title: "Achievements", 
+      component: (
+        <div>
+          {achievements.map((achievement, index) => (
+            <AchievementCard
+              key={index}
+              title={achievement.title}
+              description={achievement.description}
+              index={index}
+            />
+          ))}
+        </div>
+      ) 
+    }
+  ];
+
+  // State for active tab
+  const [activeTabId, setActiveTabId] = useState(0);
+  
+  // Refs for tab elements and animations
+  const tabsRef = useRef([]);
+  
+  // Function to handle tab click
+  const handleTabClick = (index) => {
+    setActiveTabId(index);
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-foreground/[0.02] pb-20">
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-        className="max-w-5xl mx-auto px-4 sm:px-6 pt-10"
-      >
-        {/* Header with title */}
-        {/* <div className="text-center mb-12">
-          <motion.span 
-            initial={{ opacity: 0, scale: 0.9 }}  
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.4, delay: 0.1 }}
-            className="inline-block px-3 py-1.5 text-xs font-medium tracking-wider bg-primary/10 text-primary uppercase rounded-full mb-4"
-          >
-            Professional Resume
-          </motion.span>
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-4xl sm:text-5xl font-semibold tracking-tight"
-          >
-            Bhuvan Kambley
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-3 text-xl text-foreground/70"
-          >
-            Computer Science Engineer & Full-Stack Developer
-          </motion.p>
-          
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex justify-center gap-4 mt-6"
-          >
-            <Button className="rounded-full gap-2 bg-primary hover:bg-primary/90">
-              <Mail className="w-4 h-4" />
-              Contact Me
-            </Button>
-            <Button variant="outline" className="rounded-full gap-2 border-primary/30 text-primary hover:bg-primary/10">
-              <Download className="w-4 h-4" />
-              Download CV
-            </Button>
-          </motion.div>
-        </div> */}
+    <div id="ResumeSection" className="min-h-screen bg-gradient-to-b from-background to-foreground/[0.02] py-16 px-4">
+      <div className="max-w-5xl mx-auto">
+        {/* Title */}
+        <h1 className="text-3xl font-bold mb-12 text-center text-primary">
+          <span>02.</span>
+          <span className="inline-block ml-5 font-bold">Resume</span>
+        </h1>
         
-        {/* Navigation */}
-        <Navigation />
-        
-        <div className="max-w-4xl mx-auto">
-          {/* About section with ID for navigation */}
-          <div id="about">
-            <AboutMeSection />
-          </div>
-
-          <ResumeSection title="Experience" id="experience">
-            <div className="space-y-6">
-              {experiences.map((experience, index) => (
-                <TimelineItem 
-                  key={index}
-                  title={experience.title}
-                  subtitle={experience.subtitle}
-                  period={experience.period}
-                  description={experience.description}
-                  index={index}
+        {/* Main Content with Tab Layout */}
+        <div className="flex flex-col md:flex-row gap-8">
+          {/* 
+            Tab List - Left Side
+            Adjust width by changing "md:w-64" to your preferred size
+          */}
+          <div className="md:w-64 relative">
+            <div className="sticky top-24">
+              {/* Tab buttons */}
+              <div 
+                className="flex md:flex-col overflow-x-auto md:overflow-visible no-scrollbar"
+                role="tablist"
+              >
+                {sections.map((section, index) => (
+                  <button
+                    key={section.id}
+                    ref={el => (tabsRef.current[index] = el)}
+                    onClick={() => handleTabClick(index)}
+                    className={`
+                      relative flex items-center text-left py-3 px-4 border-l-2 transition-all duration-300
+                      ${activeTabId === index 
+                        ? "font-semibold border-l-primary text-foreground" 
+                        : "border-l-foreground/10 text-foreground/60 hover:text-foreground/90 hover:border-l-foreground/30"
+                      }
+                    `}
+                    role="tab"
+                    tabIndex={activeTabId === index ? 0 : -1}
+                    aria-selected={activeTabId === index}
+                    aria-controls={`panel-${index}`}
+                  >
+                    <span className="whitespace-nowrap">{section.title}</span>
+                  </button>
+                ))}
+                
+                {/* Highlight indicator - Adjust height by changing "h-[50px]" */}
+                <div 
+                  className="absolute left-0 w-0.5 h-[10px] bg-primary rounded-full transition-transform duration-300 hidden md:block"
+                  style={{ 
+                    transform: `translateY(${activeTabId * 50}px)`, // Adjust the multiplier to match your tab height
+                    top: '12px' // Adjust to vertically center the highlight in your tabs
+                  }}
                 />
-              ))}
-            </div>
-          </ResumeSection>
-
-          <ResumeSection title="Education" id="education">
-            <div className="space-y-6">
-              {education.map((edu, index) => (
-                <TimelineItem 
-                  key={index}
-                  title={edu.title}
-                  subtitle={edu.subtitle}
-                  period={edu.period}
-                  description={edu.description}
-                  index={index}
-                />
-              ))}
-            </div>
-          </ResumeSection>
-
-          <ResumeSection title="Skills" id="skills">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {skillCategories.map((category, index) => (
-                <SkillCategory 
-                  key={index}
-                  title={category.title}
-                  skills={category.skills}
-                  index={index}
-                />
-              ))}
-            </div>
-          </ResumeSection>
-
-          <ResumeSection title="Certifications" id="certifications">
-            <div className="space-y-6">
-              {certifications.map((cert, index) => (
-                <TimelineItem
-                  key={index}
-                  title={cert.title}
-                  subtitle={cert.issuer}
-                  period={cert.date}
-                  description={cert.description}
-                  index={index}
-                  icon={<Award className="w-4 h-4 mr-2" />}
-                />
-              ))}
-              
-              <div className="mt-8 flex justify-center">
-                <Button
-                  variant="outline"
-                  className="rounded-full gap-2 font-medium hover:bg-primary/10 hover:text-primary border-primary/20 transition-colors"
-                  onClick={() => window.open("https://www.credly.com/users/bhuvan-kambley", "_blank")}
-                >
-                  <Award className="w-4 h-4" />
-                  View All Badges on Credly
-                </Button>
               </div>
             </div>
-          </ResumeSection>
-
-          <ResumeSection title="Achievements" id="achievements">
-            <div className="space-y-6">
-              {achievements.map((achievement, index) => (
-                <AchievementCard
-                  key={index}
-                  title={achievement.title}
-                  description={achievement.description}
-                  index={index}
-                />
-              ))}
-            </div>
-          </ResumeSection>
+          </div>
           
-          
+          {/* 
+            Tab Panels - Right Side 
+            Adjust the padding and styling to your preference
+          */}
+          <div className="flex-1 bg-foreground/[0.01] rounded-xl border border-foreground/5 p-6 md:p-8">
+            {sections.map((section, index) => (
+              <div
+                key={section.id}
+                id={`panel-${index}`}
+                role="tabpanel"
+                tabIndex={activeTabId === index ? 0 : -1}
+                aria-labelledby={`tab-${index}`}
+                aria-hidden={activeTabId !== index}
+                className={`
+                  transition-opacity duration-300 ease-in-out
+                  ${activeTabId === index ? 'opacity-100' : 'absolute opacity-0 invisible'}
+                `}
+              >
+                {activeTabId === index && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4 }}
+                  >
+                    {/* Section title for mobile - hidden on desktop */}
+                    <h2 className="text-2xl font-bold mb-6 text-primary md:hidden">
+                      {section.title}
+                    </h2>
+                    
+                    {/* Section content */}
+                    {section.component}
+                  </motion.div>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 };
 
 export default Resume;
- 

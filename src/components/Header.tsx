@@ -93,8 +93,8 @@ const Header: React.FC = () => {
           </motion.div>
           
 
-          <motion.h1 
-            className="text-2xl md:text-4xl font-display tracking-tight ml-0"
+          {/* <motion.h1 
+            className="text-xl md:text-2xl font-display tracking-tight ml-0"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
@@ -107,8 +107,21 @@ const Header: React.FC = () => {
               >
                 Hello👋, my name is 
               </motion.span>
+          </motion.h1> */}
+          <motion.h1 
+            className="text-xl mt-4 md:text-2xl font-display font-bold tracking-tight ml-0"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+              <motion.span 
+                className="inline-block"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+              >Hello 👋, my name is  
+              </motion.span>
           </motion.h1>
-          
           <motion.h1 
             className="text-3xl mt-4 md:text-6xl font-display font-bold tracking-tight ml-0"
             initial={{ opacity: 0, y: 20 }}
@@ -120,10 +133,10 @@ const Header: React.FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
-              >Bhuvan Kambley
+              >P Bhuvan Kambley
               </motion.span>
           </motion.h1>
-          <motion.h1 
+          {/* <motion.h1 
             className="text-2xl md:text-3xl mt-4 font-display font-bold tracking-tight ml-0"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -137,18 +150,17 @@ const Header: React.FC = () => {
               >
                 Designing the Future, One Line of Code at a Time
               </motion.span>
-          </motion.h1>
+          </motion.h1> */}
           
           <motion.p 
             className="mt-6 text-base leading-relaxed text-foreground/80 text-balance"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.7 }}
-          >
-            I'm currently building StockForge, a robust cloud-based solution pipeline for inventory and production management at Vegam Solutions. Designed for scalability and security, StockForge leverages AWS ECS for container orchestration, Django for backend logic, PostgreSQL for data persistence. The system supports features like BOM management, component traceability, and enterprise-grade analytics, helping manufacturing teams save time and reduce errors.
-
-            <br /><br />With a strong foundation in full-stack development and a growing passion for machine learning, I enjoy solving real-world problems through clean code, intelligent design, and scalable architectures. I'm particularly driven by opportunities that let me bridge backend logic with smart, user-friendly interfaces and AI-powered insights.
-          </motion.p>
+            dangerouslySetInnerHTML={{ 
+              __html: "I'm <strong class=\"text-foreground font-semibold\">Bhuvan Kambley</strong>, a highly driven <strong class=\"text-foreground font-semibold\">Full-Stack Developer</strong> with a deep curiosity for Machine Learning and Artificial Intelligence. Currently pursuing my Bachelor's degree in Computer Science and Engineering at the National Institute of Engineering, Mysuru. I bring together academic excellence with hands-on industry experience across software engineering and intelligent systems.<br /><br />At Vegam Solutions, I'm developing <strong class=\"text-foreground font-semibold\">StockForge</strong>—a cloud-based solution designed to streamline inventory and production management for manufacturing enterprises.<br />I take pride in being an <strong class=\"text-foreground font-semibold\">enthusiastic and conscientious team player</strong> with exceptional communication and soft skills. I am passionate about learning new skills, keeping up with emerging tech trends, and identifying the best technologies to enhance our solutions. Furthermore, I believe in giving back to society and actively participate in volunteering activities to create a positive impact."
+            }}
+          />
           
           {/* CTA Buttons */}
           <motion.div 
