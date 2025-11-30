@@ -157,14 +157,14 @@ const Header: React.FC = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.7 }}
             dangerouslySetInnerHTML={{ 
-              __html: " A highly driven <strong class=\"text-foreground font-semibold\">Full-Stack Developer</strong> with a deep curiosity for Machine Learning and Artificial Intelligence. Currently pursuing my Bachelor's degree in Computer Science and Engineering at the National Institute of Engineering, Mysuru. I bring together academic excellence with hands-on industry experience across software engineering and intelligent systems.<br /><br />Actively looking for full time Software Engineer opportunities to start right away."
+              __html: "Hi, I'm Bhuvan Kambley. I am a Cloud Support Engineer at Akamai and a Computer Science graduate from NIE Mysuru.<br /><br />With a unique blend of <strong class=\"text-foreground font-semibold\">Full-Stack Engineering</strong> skills and <strong class=\"text-foreground font-semibold\">Cloud Operations</strong> expertise, I help enterprises navigate the complexities of the Intelligent Edge. I am passionate about solving intricate network challenges, mastering new technologies, and delivering exceptional value through clear communication and technical precision."
               
               // I'm <strong class=\"text-foreground font-semibold\">Bhuvan Kambley</strong>,
               // At Vegam Solutions, I'm developing <strong class=\"text-foreground font-semibold\">StockForge</strong>—a cloud-based solution designed to streamline inventory and production management for manufacturing enterprises.<br />I take pride in being an <strong class=\"text-foreground font-semibold\">enthusiastic and conscientious team player</strong> with exceptional communication and soft skills. I am passionate about learning new skills, keeping up with emerging tech trends, and identifying the best technologies to enhance our solutions. Furthermore, I believe in giving back to society and actively participate in volunteering activities to create a positive impact."
             }}
           />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-16 mx-auto w-full">
-          <div className="bg-foreground/[0.02] border border-foreground/10 rounded-xl p-4 flex flex-col items-center text-center">
+          {/* <div className="bg-foreground/[0.02] border border-foreground/10 rounded-xl p-4 flex flex-col items-center text-center">
             <div className="bg-primary/10 rounded-full p-3 mb-3">
               <svg className="w-6 h-6 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"></path>
@@ -175,9 +175,9 @@ const Header: React.FC = () => {
             </div>
             <h3 className="font-medium text-foreground">Full-Stack Development</h3>
             <p className="text-sm text-foreground/70 mt-1">Building end-to-end solutions with modern frameworks</p>
-          </div>
+          </div> */}
           
-          <div className="bg-foreground/[0.02] border border-foreground/10 rounded-xl p-4 flex flex-col items-center text-center">
+          {/* <div className="bg-foreground/[0.02] border border-foreground/10 rounded-xl p-4 flex flex-col items-center text-center">
             <div className="bg-primary/10 rounded-full p-3 mb-3">
               <svg className="w-6 h-6 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M16 16v1a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h2"></path>
@@ -190,8 +190,8 @@ const Header: React.FC = () => {
             <h3 className="font-medium text-foreground">Machine Learning</h3>
             <p className="text-sm text-foreground/70 mt-1">Implementing intelligent systems with TensorFlow and PyTorch</p>
           </div>
-          
-          <div className="bg-foreground/[0.02] border border-foreground/10 rounded-xl p-4 flex flex-col items-center text-center">
+           */}
+          {/* <div className="bg-foreground/[0.02] border border-foreground/10 rounded-xl p-4 flex flex-col items-center text-center">
             <div className="bg-primary/10 rounded-full p-3 mb-3">
               <svg className="w-6 h-6 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
@@ -200,7 +200,7 @@ const Header: React.FC = () => {
             </div>
             <h3 className="font-medium text-foreground">Problem Solving</h3>
             <p className="text-sm text-foreground/70 mt-1">Analytical approach to technical challenges</p>
-          </div>
+          </div> */}
         </div>
           {/* CTA Buttons */}
           <motion.div 

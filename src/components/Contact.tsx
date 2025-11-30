@@ -206,7 +206,7 @@ const Contact: React.FC = () => {
                 transition={{ duration: 0.4, delay: 0.4 }}
                 viewport={{ once: true }}
               >
-                Contact Information
+                What's next?
               </motion.h3>
               
               <div className="space-y-6">
@@ -217,16 +217,16 @@ const Contact: React.FC = () => {
                   transition={{ duration: 0.4, delay: 0.45 }}
                   viewport={{ once: true }}
                 >
-                  <p className="text-xs md:text-sm text-foreground/60 mb-1">Email</p>
+                  <p className="text-xs md:text-sm text-foreground/60 mb-1">Get in touch at</p>
                   <a 
                     href="mailto:pbhuvankambley2003@gmail.com" 
-                    className="text-xs md:text-sm lg:text-lg text-foreground font-medium hover:text-accent transition-colors break-words"
+                    className="text-xs md:text-sm lg:text-lg text-foreground font-medium hover:text-accent transition-colors break-words text-[#06bfff]"
                   >
                     pbhuvankambley2003@gmail.com
                   </a>
                 </motion.div>
                 
-                <motion.div 
+                {/* <motion.div 
                   className="text-center"
                   initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -240,9 +240,9 @@ const Contact: React.FC = () => {
                   >
                     +91 9110260591
                   </a>
-                </motion.div>
+                </motion.div> */}
                 
-                <motion.div 
+                {/* <motion.div 
                   className="text-center"
                   initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -251,7 +251,7 @@ const Contact: React.FC = () => {
                 >
                   <p className="text-xs md:text-sm text-foreground/60 mb-1">Location</p>
                   <p className="text-sm md:text-lg text-foreground font-medium">Bengaluru, India</p>
-                </motion.div>
+                </motion.div> */}
               </div>
             </motion.div>
           </motion.div>

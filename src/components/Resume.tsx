@@ -11,10 +11,34 @@ const Resume = () => {
 
   // Experience data
   const experiences = [
+     {
+      title: "Cloud Support Engineer",
+      subtitle: "Akamai Technologies",
+      period: "Jan 2024 - Present",
+      bullets: [
+        "Orchestrated the resolution of mission-critical technical escalations for Global 2000 clients, utilizing advanced packet analysis (Wireshark) and log inspection to diagnose complex latency and availability bottlenecks within the Intelligent Edge Platform.",
+        "Fortified enterprise security architectures by configuring and fine-tuning Akamai Kona Site Defender and Web Application Firewall (WAF) rules, successfully mitigating high-volume DDoS attacks and minimizing false positive rates.",
+        "Maximized content delivery performance through granular analysis of DNS propagation, TCP/IP behavior, and cache-hit ratios, resulting in optimized load times and reduced origin offload for high-traffic media streaming customers.",
+        "Served as a trusted technical advisor during major client events (Cyber Week, live broadcasts), providing proactive monitoring and real-time traffic management to ensure 99.99% uptime and platform stability.",
+        "Streamlined diagnostic workflows by leveraging Linux-based command-line utilities (cURL, dig, grep) and scripting to automate root cause analysis, significantly reducing the Mean Time to Resolve (MTTR) for complex incidents."
+      ]
+    },
+    {
+      title: "Graduate Engineer Trainee",
+      subtitle: "Akamai Technologies",
+      period: "Oct 2025 - Nov 2025",
+      bullets: [
+        "Spearheaded the design and execution of Proof-of-Concept (PoC) solutions spanning Akamai's comprehensive product suite, encompassing Content Delivery Network (CDN), advanced Cloud Security (WAF/Bot Management), and Cloud Compute (IaaS/PaaS) offerings.",
+        "Cultivated deep technical proficiency in foundational principles of Content Delivery Networks, Web Application Firewalls, DDoS mitigation strategies, and overall Web Performance optimization.",
+        "Developed a thorough understanding of the core architectural principles and technical differentiation of the Akamai Intelligent Edge Platform",
+        "Engineered and deployed sophisticated configurations to significantly enhance the security posture and performance efficiency for client digital properties utilizing the Akamai platform.",
+        "Engaged in effective collaboration with cross-functional engineering and sales teams to ensure the timely and successful delivery of high-quality technical solutions."
+           ]
+    },
     {
       title: "SDE Intern",
       subtitle: "Vegam Solutions Delaware",
-      period: "2025 - Present",
+      period: "Mar 2025 - Sep 2025", 
       bullets: [
         "Led end-to-end development of StockForge, a cloud-based inventory management solution",
         "Utilized Django, AWS, and PostgreSQL to build a full-stack solution",
@@ -24,7 +48,7 @@ const Resume = () => {
     {
       title: "Machine Learning Intern",
       subtitle: "Dotch Endeavours pvt ltd",
-      period: "Oct - Nov 2023",
+      period: "Oct 2023 - Nov 2023",
       bullets: [
         "Developed a Parkinson's disease prediction algorithm with 92% accuracy",
         "Implemented neural networks and TensorFlow for deep learning models",
@@ -118,7 +142,7 @@ const Resume = () => {
     const aboutMeData = {
       name: "Bhuvan Kambley",
       title: "Computer Science Engineer",
-      bio: "Welcome to my Website! I'm **Bhuvan Kambley**, a highly driven **Full-Stack Developer** with a deep curiosity for Machine Learning and Artificial Intelligence. Currently pursuing my Bachelor's degree in Computer Science and Engineering at the National Institute of Engineering, Mysuru. I bring together academic excellence with hands-on industry experience across software engineering and intelligent systems.\n\nAt Vegam Solutions, I'm developing **StockForge**—a cloud-based solution designed to streamline inventory and production management for manufacturing enterprises.\nI take pride in being an **enthusiastic and conscientious team player** with exceptional communication and soft skills. I am passionate about learning new skills, keeping up with emerging tech trends, and identifying the best technologies to enhance our solutions. Furthermore, I believe in giving back to society and actively participate in volunteering activities to create a positive impact.",
+      bio: "Welcome to my Website! I'm **Bhuvan Kambley**,a dedicated Cloud Support Engineer at **Akamai Technologies** with a robust foundation in Full-Stack Development. I hold a Bachelor's degree in Computer Science and Engineering from the National Institute of Engineering, Mysuru, where I cultivated a deep curiosity for intelligent systems and network infrastructure.\n\nCurrently, I specialize in diagnosing and resolving complex technical challenges within the **Akamai Intelligent Edge Platform**, focusing on **Content Delivery Networks (CDN)** and **Cloud Security**. My background in software engineering allows me to approach troubleshooting with a developer’s mindset—bridging the gap between code and infrastructure to deliver rapid resolutions.\n\nI pride myself on being a conscientious team player with exceptional communication skills, capable of translating complex technical concepts for diverse stakeholders. I am passionate about staying ahead of emerging tech trends, particularly in API security and network protocols, and I remain actively involved in volunteering to create a positive social impact.",
       image: "/bb.jpg",
       location: "Bengaluru, India",
       experience: "SDE Intern",
@@ -138,7 +162,7 @@ const Resume = () => {
               className="text-foreground/80 leading-relaxed text-base md:text-[15px] text-center md:text-left"
               dangerouslySetInnerHTML={{ 
                 __html: aboutMeData.bio
-                  .replace(/\*\*(.*?)\*\*/g, '<strong class="text-foreground font-semibold">$1</strong>')
+                  .replace(/\*\*(.*?)\*\*/g, '<strong class="text-foreground font-semibold text-[#06bfff]">$1</strong>')
                   .replace(/\n\n/g, '<br /><br />') 
               }}
             />
@@ -314,7 +338,7 @@ const Resume = () => {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div>
               <h3 className="font-semibold text-lg tracking-tight text-primary group-hover:text-primary/90 transition-color text-left">{title}</h3>
-              <div className="flex items-center mt-1 text-foreground/70 text-lg">
+              <div className="flex items-center mt-1 text-foreground/70 text-lg text-[#06bfff]">
                 <span>{subtitle}</span>
               </div>
             </div>
@@ -550,7 +574,7 @@ const Resume = () => {
           Tab Panels - Right Side 
           Adjust the padding and styling to your preference
         */}
-        <div className="flex-1 bg-foreground/[0.01] rounded-xl border border-foreground/5 p-6 md:p-8">
+        <div className="flex-1 bg-foreground/[0.01] rounded-xl border border-foreground/5 p-6 md:p-8 text-sm">
           {sections.map((section, index) => (
             <div
               key={section.id}
