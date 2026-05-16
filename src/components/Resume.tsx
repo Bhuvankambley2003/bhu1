@@ -14,7 +14,7 @@ const Resume = () => {
      {
       title: "Cloud Support Engineer",
       subtitle: "Akamai Technologies",
-      period: "Jan 2024 - Present",
+      period: "Nov 2025 - Present",
       bullets: [
         "Orchestrated the resolution of mission-critical technical escalations for Global 2000 clients, utilizing advanced packet analysis (Wireshark) and log inspection to diagnose complex latency and availability bottlenecks within the Intelligent Edge Platform.",
         "Fortified enterprise security architectures by configuring and fine-tuning Akamai Kona Site Defender and Web Application Firewall (WAF) rules, successfully mitigating high-volume DDoS attacks and minimizing false positive rates.",
@@ -143,7 +143,7 @@ const Resume = () => {
       name: "Bhuvan Kambley",
       title: "Computer Science Engineer",
       bio: "Welcome to my Website! I'm **Bhuvan Kambley**,a dedicated Cloud Support Engineer at **Akamai Technologies** with a robust foundation in Full-Stack Development. I hold a Bachelor's degree in Computer Science and Engineering from the National Institute of Engineering, Mysuru, where I cultivated a deep curiosity for intelligent systems and network infrastructure.\n\nCurrently, I specialize in diagnosing and resolving complex technical challenges within the **Akamai Intelligent Edge Platform**, focusing on **Content Delivery Networks (CDN)** and **Cloud Security**. My background in software engineering allows me to approach troubleshooting with a developer’s mindset—bridging the gap between code and infrastructure to deliver rapid resolutions.\n\nI pride myself on being a conscientious team player with exceptional communication skills, capable of translating complex technical concepts for diverse stakeholders. I am passionate about staying ahead of emerging tech trends, particularly in API security and network protocols, and I remain actively involved in volunteering to create a positive social impact.",
-      image: "/bb.jpg",
+      image: "/photo.png",
       location: "Bengaluru, India",
       experience: "SDE Intern",
       availability: "Available from May 2025",
