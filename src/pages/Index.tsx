@@ -64,7 +64,7 @@ const Index = () => {
         <Contact />
       </main>
       
-      <footer className="py-10 text-center text-foreground/70 backdrop-blur-sm border-t border-foreground/5">
+      <footer className="py-8 sm:py-10 text-center text-foreground/70 backdrop-blur-sm border-t border-foreground/5">
             <a 
               href="https://github.com/Bhuvankambley2003" 
               target="_blank" 
@@ -86,7 +86,7 @@ const Index = () => {
       {/* Scroll to top button */}
       <Button
         onClick={scrollToTop}
-        className={`fixed bottom-6 right-6 size-12 rounded-full shadow-lg bg-accent hover:bg-accent/90 text-white p-0 z-50 transition-all duration-300 ${
+        className={`fixed bottom-4 sm:bottom-6 right-4 sm:right-6 size-10 sm:size-12 rounded-full shadow-lg bg-accent hover:bg-accent/90 text-white p-0 z-50 transition-all duration-300 ${
           showScrollButton ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
         }`}
         aria-label="Scroll to top"

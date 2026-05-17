@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Award, Building2, Calendar, MapPin } from "lucide-react";
+import { Award, Building2, Calendar, MapPin, ArrowDown } from "lucide-react";
 
 const Resume = () => {
   // ========================
@@ -16,11 +16,11 @@ const Resume = () => {
       subtitle: "Akamai Technologies",
       period: "Nov 2025 - Present",
       bullets: [
-        "Orchestrated the resolution of mission-critical technical escalations for Global 2000 clients, utilizing advanced packet analysis (Wireshark) and log inspection to diagnose complex latency and availability bottlenecks within the Intelligent Edge Platform.",
-        "Fortified enterprise security architectures by configuring and fine-tuning Akamai Kona Site Defender and Web Application Firewall (WAF) rules, successfully mitigating high-volume DDoS attacks and minimizing false positive rates.",
-        "Maximized content delivery performance through granular analysis of DNS propagation, TCP/IP behavior, and cache-hit ratios, resulting in optimized load times and reduced origin offload for high-traffic media streaming customers.",
-        "Served as a trusted technical advisor during major client events (Cyber Week, live broadcasts), providing proactive monitoring and real-time traffic management to ensure 99.99% uptime and platform stability.",
-        "Streamlined diagnostic workflows by leveraging Linux-based command-line utilities (cURL, dig, grep) and scripting to automate root cause analysis, significantly reducing the Mean Time to Resolve (MTTR) for complex incidents."
+        "Resolved mission-critical technical escalations for Global 2000 clients using Wireshark and log inspection to diagnose latency and availability bottlenecks.",
+        "Configured and fine-tuned Akamai Kona Site Defender and WAF rules, mitigating high-volume DDoS attacks and minimizing false positives.",
+        "Optimized content delivery performance by analyzing DNS propagation and cache-hit ratios, reducing origin offload for media streaming clients.",
+        "Acted as a technical advisor during major client events, providing proactive monitoring and real-time traffic management for 99.99% uptime.",
+        "Automated root cause analysis workflows using Linux utilities (cURL, dig, grep) and scripting to significantly reduce MTTR."
       ]
     },
     {
@@ -28,12 +28,10 @@ const Resume = () => {
       subtitle: "Akamai Technologies",
       period: "Oct 2025 - Nov 2025",
       bullets: [
-        "Spearheaded the design and execution of Proof-of-Concept (PoC) solutions spanning Akamai's comprehensive product suite, encompassing Content Delivery Network (CDN), advanced Cloud Security (WAF/Bot Management), and Cloud Compute (IaaS/PaaS) offerings.",
-        "Cultivated deep technical proficiency in foundational principles of Content Delivery Networks, Web Application Firewalls, DDoS mitigation strategies, and overall Web Performance optimization.",
-        "Developed a thorough understanding of the core architectural principles and technical differentiation of the Akamai Intelligent Edge Platform",
-        "Engineered and deployed sophisticated configurations to significantly enhance the security posture and performance efficiency for client digital properties utilizing the Akamai platform.",
-        "Engaged in effective collaboration with cross-functional engineering and sales teams to ensure the timely and successful delivery of high-quality technical solutions."
-           ]
+        "Designed and executed PoC solutions across Akamai's CDN, Cloud Security (WAF), and Cloud Compute offerings.",
+        "Cultivated deep technical proficiency in CDN principles, WAF, DDoS mitigation, and Web Performance optimization.",
+        "Engineered configurations to enhance the security posture and performance of client digital properties."
+      ]
     },
     {
       title: "SDE Intern",
@@ -122,12 +120,10 @@ const Resume = () => {
   const achievements = [
     {
       title: "Runner-up in National Level Hackathon",
-      bullets: ["Competed among 70 teams in PES Mandya we secured the 2nd place with our project Groupie",
-        "“Groupie” is a cross-platform study group application available as both a mobile and web app, designed to connect students with study communities.",
-        "It enables real-time doubt-solving through chat, file sharing, and a built-in calendar for collaborative scheduling, streamlining the study experience.",
-        "Focused on building an ecosystem for students who prioritize academics, supporting effective peer-to-peer learning and resource sharing.",
-        "Features include creation and joining of study groups, seamless communication among members, and tools for managing group study sessions.",
-        
+      bullets: [
+        "Secured 2nd place among 70 teams with 'Groupie', a cross-platform study group application.",
+        "Enabled real-time doubt-solving, file sharing, and collaborative scheduling to streamline studying.",
+        "Focused on peer-to-peer learning with seamless communication tools for students."
       ],
       
     }
@@ -142,7 +138,7 @@ const Resume = () => {
     const aboutMeData = {
       name: "Bhuvan Kambley",
       title: "Computer Science Engineer",
-      bio: "Welcome to my Website! I'm **Bhuvan Kambley**,a dedicated Cloud Support Engineer at **Akamai Technologies** with a robust foundation in Full-Stack Development. I hold a Bachelor's degree in Computer Science and Engineering from the National Institute of Engineering, Mysuru, where I cultivated a deep curiosity for intelligent systems and network infrastructure.\n\nCurrently, I specialize in diagnosing and resolving complex technical challenges within the **Akamai Intelligent Edge Platform**, focusing on **Content Delivery Networks (CDN)** and **Cloud Security**. My background in software engineering allows me to approach troubleshooting with a developer’s mindset—bridging the gap between code and infrastructure to deliver rapid resolutions.\n\nI pride myself on being a conscientious team player with exceptional communication skills, capable of translating complex technical concepts for diverse stakeholders. I am passionate about staying ahead of emerging tech trends, particularly in API security and network protocols, and I remain actively involved in volunteering to create a positive social impact.",
+      bio: "Hi, I'm **Bhuvan Kambley**, a **Cloud Support Engineer** at **Akamai Technologies** with a strong foundation in Full-Stack Development. I hold a B.E. in Computer Science from the National Institute of Engineering, Mysuru.\n\nI specialize in resolving complex challenges within the **Akamai Intelligent Edge Platform**, focusing on **CDN** and **Cloud Security**. My developer background helps me bridge code and infrastructure to deliver rapid solutions.\n\nI am a collaborative team player passionate about emerging tech, API security, and creating positive social impact.",
       image: "/photo.png",
       location: "Bengaluru, India",
       experience: "SDE Intern",
@@ -159,7 +155,7 @@ const Resume = () => {
         <div className="flex flex-col md:flex-row gap-8 items-center md:items-start">
           {/* Profile Photo with Professional Styling */}
           <div 
-              className="text-foreground/80 leading-relaxed text-base md:text-[15px] text-center md:text-left"
+              className="text-foreground/80 leading-relaxed text-sm text-center md:text-left"
               dangerouslySetInnerHTML={{ 
                 __html: aboutMeData.bio
                   .replace(/\*\*(.*?)\*\*/g, '<strong class="text-foreground font-semibold text-[#06bfff]">$1</strong>')
@@ -173,7 +169,7 @@ const Resume = () => {
             transition={{ duration: 0.5 }}
           >
             {/* Reduced size while maintaining aspect ratio */}
-            <div className="w-48 h-60 md:w-64 md:h-80 lg:w-72 lg:h-96 relative z-10 overflow-hidden rounded-xl shadow-xl">
+            <div className="w-32 h-40 md:w-48 md:h-60 lg:w-56 lg:h-72 relative z-10 overflow-hidden rounded-xl shadow-xl">
               {/* Professional border styling */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-primary/5 rounded-xl p-[2px] z-0">
                 <div className="w-full h-full bg-background/50 backdrop-blur-sm rounded-xl"></div>
@@ -332,13 +328,13 @@ const Resume = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: index * 0.1 }}
-        className="group bg-foreground/[0.02] hover:bg-foreground/[0.05] rounded-xl p-6 transition-all duration-300 border border-foreground/10 mb-6"
+        className="group bg-foreground/[0.02] hover:bg-foreground/[0.05] rounded-xl p-4 sm:p-5 transition-all duration-300 border border-foreground/10 mb-4"
       >
         <div className="space-y-4">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div>
-              <h3 className="font-semibold text-lg tracking-tight text-primary group-hover:text-primary/90 transition-color text-left">{title}</h3>
-              <div className="flex items-center mt-1 text-foreground/70 text-lg text-[#06bfff]">
+              <h3 className="font-semibold text-base tracking-tight text-primary group-hover:text-primary/90 transition-color text-left">{title}</h3>
+              <div className="flex items-center mt-1 text-foreground/70 text-base text-[#06bfff]">
                 <span>{subtitle}</span>
               </div>
             </div>
@@ -349,7 +345,7 @@ const Resume = () => {
           </div>
           
           {description && (
-            <p className="text-foreground/70 leading-relaxed text-left text-base">{description}</p>
+            <p className="text-foreground/70 leading-relaxed text-left text-sm">{description}</p>
           )}
 
         {bullets && bullets.length > 0 && (
@@ -378,12 +374,12 @@ const Resume = () => {
   }) => {
     return (
       <motion.div 
-        className="bg-foreground/[0.02] border border-foreground/10 p-6 rounded-xl backdrop-blur-sm mb-6"
+        className="bg-foreground/[0.02] border border-foreground/10 p-4 sm:p-5 rounded-xl backdrop-blur-sm mb-4"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: index * 0.1 }}
       >
-        <h3 className="text-lg font-medium mb-5 text-primary/90">{title}</h3>
+        <h3 className="text-base font-medium mb-4 text-primary/90">{title}</h3>
         <div className="flex flex-wrap gap-2">
           {skills.map((skill, idx) => (
             <motion.div 
@@ -391,7 +387,7 @@ const Resume = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3, delay: 0.1 + idx * 0.05 }}
-              className="bg-foreground/[0.05] hover:bg-foreground/[0.08] border border-foreground/10 px-3 py-1.5 rounded-full text-sm transition-colors "
+              className="bg-foreground/[0.05] hover:bg-foreground/[0.08] border border-foreground/10 px-2 py-1 rounded-full text-xs transition-colors "
             >
               {skill.name}
             </motion.div>
@@ -409,7 +405,7 @@ const Resume = () => {
   }) => {
     return (
       <motion.div 
-        className="bg-foreground/[0.02] border border-foreground/10 p-6 rounded-xl flex gap-5 mb-6"
+        className="bg-foreground/[0.02] border border-foreground/10 p-4 sm:p-5 rounded-xl flex gap-4 mb-4"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -418,8 +414,8 @@ const Resume = () => {
           <Award className="text-primary w-6 h-6" />
         </div>
         <div>
-          <h3 className="font-semibold text-xl mb-2">{title}</h3>
-          {description && <p className="text-foreground/70 leading-relaxed text-base">{description}</p>}
+          <h3 className="font-semibold text-lg mb-1">{title}</h3>
+          {description && <p className="text-foreground/70 leading-relaxed text-sm">{description}</p>}
         </div>
       </motion.div>
     );
@@ -516,8 +512,8 @@ const Resume = () => {
   };
 
   return (
-  <div id="ResumeSection" className="min-h-screen py-16 px-4 mt-32">
-    <div className="max-w-5xl mx-auto">
+  <div id="ResumeSection" className="relative min-h-screen py-16 sm:py-20 px-4 sm:px-6 md:px-8 mt-20 sm:mt-24 md:mt-32">
+    <div className="max-w-4xl mx-auto lg:pl-[120px] pb-20">
       {/* Title */}
       <h1 className="text-3xl font-bold mb-12 text-center text-primary">
         <span>02.</span>
@@ -530,7 +526,7 @@ const Resume = () => {
           Tab List - Left Side
           Adjust width by changing "md:w-64" to your preferred size
         */}
-        <div className="md:w-53 relative">
+        <div className="md:w-36 relative shrink-0">
           <div className="sticky top-24">
             {/* Tab buttons */}
             <div 
@@ -543,7 +539,7 @@ const Resume = () => {
                   ref={el => (tabsRef.current[index] = el)}
                   onClick={() => handleTabClick(index)}
                   className={`
-                    relative flex items-center text-left py-3 px-4 border-l-2 transition-all duration-300
+                    relative flex items-center text-left py-2 px-3 text-sm border-l-2 transition-all duration-300
                     ${activeTabId === index 
                       ? "font-semibold border-l-primary text-foreground" 
                       : "border-l-foreground/10 text-foreground/60 hover:text-foreground/90 hover:border-l-foreground/30"
@@ -560,10 +556,10 @@ const Resume = () => {
               
               {/* Highlight indicator - Adjust height by changing "h-[50px]" */}
               <div 
-                className="absolute left-0 w-0.5 h-[10px] bg-primary rounded-full transition-transform duration-300 hidden md:block"
+                className="absolute left-0 w-0.5 h-[8px] bg-primary rounded-full transition-transform duration-300 hidden md:block"
                 style={{ 
-                  transform: `translateY(${activeTabId * 50}px)`, // Adjust the multiplier to match your tab height
-                  top: '12px' // Adjust to vertically center the highlight in your tabs
+                  transform: `translateY(${activeTabId * 36}px)`, // Adjust the multiplier to match your tab height (py-2 is ~36px total)
+                  top: '14px' // Adjust to vertically center the highlight in your tabs
                 }}
               />
             </div>
@@ -608,6 +604,26 @@ const Resume = () => {
         </div>
       </div>
     </div>
+
+    {/* Scroll Indicator */}
+    <motion.div 
+      className="absolute bottom-12 left-1/2 transform -translate-x-1/2 flex flex-col items-center justify-center hidden md:flex cursor-pointer"
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ 
+        duration: 0.5, 
+        delay: 1.5,
+        repeat: Infinity,
+        repeatType: "reverse",
+        repeatDelay: 0.5
+      }}
+      onClick={() => {
+        document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+      }}
+    >
+      <span className="text-sm text-foreground/60 mb-2">Scroll Down</span>
+      <ArrowDown size={20} className="text-foreground/60" />
+    </motion.div>
   </div>
   );
 };

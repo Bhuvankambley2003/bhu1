@@ -7,8 +7,8 @@ import { motion } from 'framer-motion';
 
 const Contact: React.FC = () => {
   return (
-    <AnimatedSection id="contact" className="py-20 px-6 relative code-effect">
-      <div className="max-w-6xl mx-auto">
+    <AnimatedSection id="contact" className="py-16 sm:py-20 px-4 sm:px-6 md:px-8 mt-20 sm:mt-24 md:mt-32 relative code-effect">
+      <div className="max-w-4xl mx-auto lg:pl-[120px]">
         <motion.div 
           className="text-center mb-12"
           initial={{ opacity: 0, y: 20 }}

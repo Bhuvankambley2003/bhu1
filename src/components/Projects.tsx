@@ -205,8 +205,8 @@ const Projects: React.FC = () => {
   };
 
   return (
-    <AnimatedSection id="projects" className="py-20 px-3 sm:px-4 md:px-6">
-      <div className="max-w-6xl mx-auto">
+    <AnimatedSection id="projects" className="py-16 sm:py-20 px-4 sm:px-6 md:px-8 mt-20 sm:mt-24 md:mt-32">
+      <div className="max-w-4xl mx-auto lg:pl-[120px]">
         {/* Section Header */}
         <motion.div 
           className="text-center mb-16"
@@ -267,7 +267,7 @@ const Projects: React.FC = () => {
               <span className="w-1 h-6 bg-accent rounded-full mr-3"></span>
               Featured Projects
             </motion.h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 gap-6">
               {projects.filter(p => p.featured).map((project, index) => (
                 <motion.div 
                   key={project.id}
@@ -275,61 +275,21 @@ const Projects: React.FC = () => {
                   variants={itemVariants}
                   whileHover={{ y: -5, transition: { duration: 0.3 } }}
                 >
-                  {/* Project Image */}
-                  {project.image ? (
-                    <div className="h-56 overflow-hidden relative">
-                      <motion.img 
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-full object-cover"
-                        whileHover={{ scale: 1.05 }}
-                        transition={{ duration: 0.5 }}
-                      />
-                      <div className="absolute top-3 left-3">
-                        <motion.span 
-                          initial={{ opacity: 0, x: -10 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: 0.2 + index * 0.1 }}
-                          className="bg-accent text-white text-xs px-2 py-1 rounded-md"
-                        >
-                          Featured
-                        </motion.span>
-                      </div>
-                    </div>
-                  ) : (
-                    <div className={`h-56 overflow-hidden relative bg-gradient-to-r from-${getProjectAccentColor(project)}/5 to-${getProjectAccentColor(project)}/10 flex items-center justify-center`}>
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.2 }}
-                      >
-                        <ImageIcon className={`text-${getProjectAccentColor(project)}/20 w-16 h-16`} />
-                      </motion.div>
-                      <div className="absolute top-3 left-3">
-                        <motion.span 
-                          initial={{ opacity: 0, x: -10 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: 0.2 + index * 0.1 }}
-                          className="bg-accent text-white text-xs px-2 py-1 rounded-md"
-                        >
-                          Featured
-                        </motion.span>
-                      </div>
-                    </div>
-                  )}
-                  
                   {/* Project Info */}
-                  <div className="p-6 flex-1 flex flex-col">
+                  <div className="p-4 sm:p-5 flex-1 flex flex-col">
                     <motion.h3 
-                      className="text-xl font-bold mb-2"
+                      className="text-lg sm:text-xl font-bold mb-2 flex items-center gap-3"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: 0.3 }}
                     >
                       {project.title}
+                      <span className="bg-accent text-white text-[10px] uppercase tracking-wider px-2 py-1 rounded-md ml-auto">
+                        Featured
+                      </span>
                     </motion.h3>
                     <motion.p 
-                      className="text-foreground/70 text-sm mb-4 flex-grow"
+                      className="text-foreground/70 text-xs sm:text-sm mb-4 flex-grow"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: 0.4 }}
@@ -422,7 +382,7 @@ const Projects: React.FC = () => {
             <span className="w-1 h-6 bg-accent rounded-full mr-3"></span>
             Projects Portfolio
           </motion.h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 gap-6">
             {projects.filter(p => !p.featured).map((project, index) => (
               <motion.div 
                 key={project.id}
@@ -431,33 +391,10 @@ const Projects: React.FC = () => {
                 custom={index}
                 whileHover={{ y: -5, transition: { duration: 0.3 } }}
               >
-                {/* Project Image */}
-                {project.image ? (
-                  <div className="h-48 overflow-hidden relative">
-                    <motion.img 
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover"
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ duration: 0.5 }}
-                    />
-                  </div>
-                ) : (
-                  <div className={`h-48 overflow-hidden relative bg-gradient-to-r from-${getProjectAccentColor(project)}/5 to-${getProjectAccentColor(project)}/10 flex items-center justify-center`}>
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.2 }}
-                    >
-                      <ImageIcon className={`text-${getProjectAccentColor(project)}/20 w-12 h-12`} />
-                    </motion.div>
-                  </div>
-                )}
-                
                 {/* Project Info */}
-                <div className="p-6 flex-1 flex flex-col">
+                <div className="p-4 sm:p-5 flex-1 flex flex-col">
                   <motion.h3 
-                    className="text-xl font-bold mb-2"
+                    className="text-lg font-bold mb-1"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.3 + index * 0.1 }}
@@ -465,7 +402,7 @@ const Projects: React.FC = () => {
                     {project.title}
                   </motion.h3>
                   <motion.p 
-                    className="text-foreground/70 text-sm mb-4 line-clamp-3 flex-grow"
+                    className="text-foreground/70 text-xs sm:text-sm mb-3 line-clamp-3 flex-grow"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.4 + index * 0.1 }}
@@ -573,7 +510,7 @@ const Projects: React.FC = () => {
               >
                 {/* Header Image */}
                 {selectedProject.image ? (
-                  <div className="relative h-60 overflow-hidden">
+                  <div className="relative h-48 sm:h-60 overflow-hidden">
                     <motion.img 
                       src={selectedProject.image} 
                       alt={selectedProject.title}
@@ -593,7 +530,7 @@ const Projects: React.FC = () => {
                     </motion.button>
                   </div>
                 ) : (
-                  <div className={`relative h-60 overflow-hidden bg-gradient-to-r from-${getProjectAccentColor(selectedProject)}/5 to-${getProjectAccentColor(selectedProject)}/10 flex items-center justify-center`}>
+                  <div className={`relative h-48 sm:h-60 overflow-hidden bg-gradient-to-r from-${getProjectAccentColor(selectedProject)}/5 to-${getProjectAccentColor(selectedProject)}/10 flex items-center justify-center`}>
                     <motion.div
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}

@@ -74,10 +74,10 @@ const Header: React.FC = () => {
         </motion.div>
       </motion.div>
       
-      <div className="max-w-5xl w-full mx-auto flex flex-col items-start justify-center pl-8 md:pl-16 lg:pl-24">
+      <div className="max-w-5xl w-full mx-auto flex flex-col items-start justify-center px-6 sm:px-8 md:pl-16 lg:pl-24 md:pr-6">
         {/* Text Content - Now left aligned */}
         <motion.div 
-          className="flex flex-col items-start text-left max-w-2xl"
+          className="flex flex-col items-start text-left max-w-2xl w-full"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
@@ -123,7 +123,7 @@ const Header: React.FC = () => {
               </motion.span>
           </motion.h1>
           <motion.h1 
-            className="text-3xl mt-4 md:text-6xl font-display font-bold tracking-tight ml-0"
+            className="text-4xl sm:text-5xl md:text-6xl mt-4 font-display font-bold tracking-tight ml-0"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
