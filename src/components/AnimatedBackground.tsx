@@ -1,37 +1,81 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { cn } from '@/lib/utils';
+import { 
+  Lightbulb, Coffee, Brain, Code, Box, Sparkles, 
+  Layers, Zap, Hexagon, Component, Blocks, Pencil, 
+  Monitor, Cpu, Rocket, Palette, Shapes, PenTool
+} from 'lucide-react';
 
 const AnimatedBackground: React.FC<{ className?: string }> = ({ className }) => {
+  // Generate random doodle elements
+  const doodleElements = useMemo(() => {
+    const icons = [
+      Lightbulb, Coffee, Brain, Code, Box, Sparkles, 
+      Layers, Zap, Hexagon, Component, Blocks, Pencil,
+      Monitor, Cpu, Rocket, Palette, Shapes, PenTool
+    ];
+    
+    return Array.from({ length: 25 }).map((_, i) => ({
+      id: i,
+      Icon: icons[Math.floor(Math.random() * icons.length)],
+      top: `${Math.random() * 100}%`,
+      left: `${Math.random() * 100}%`,
+      size: Math.random() * 24 + 16, // 16px to 40px
+      delay: `${Math.random() * 15}s`,
+      duration: `${Math.random() * 25 + 20}s`,
+      opacity: Math.random() * 0.15 + 0.05,
+      rotation: Math.random() * 360
+    }));
+  }, []);
+
   return (
-    <div className={cn("fixed inset-0 -z-10 overflow-hidden", className)}>
-      {/* Background is now transparent - removed solid gradient */}
+    <div className={cn("fixed inset-0 -z-10 overflow-hidden bg-background transition-colors duration-300", className)}>
+      {/* Animated Gradient Orbs - Teal colors */}
+      <div className="absolute top-[-20%] left-[-10%] w-[60vw] h-[60vw] rounded-full bg-gradient-to-br from-teal-400/20 via-teal-300/10 to-transparent blur-[120px] animate-float" style={{ animationDuration: '15s' }} />
+      <div className="absolute bottom-[-20%] right-[-10%] w-[70vw] h-[70vw] rounded-full bg-gradient-to-tl from-cyan-500/15 via-teal-500/10 to-transparent blur-[150px] animate-float" style={{ animationDuration: '20s', animationDelay: '5s' }} />
+      <div className="absolute top-[40%] right-[10%] w-[40vw] h-[40vw] rounded-full bg-gradient-to-tr from-emerald-400/15 via-transparent to-transparent blur-[100px] animate-float" style={{ animationDuration: '18s', animationDelay: '2s' }} />
       
-      {/* Elegant diagonal line */}
-      <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.06]" 
+      {/* Floating Doodle Elements Layer */}
+      <div className="absolute inset-0 pointer-events-none">
+        {doodleElements.map((el) => {
+          const Icon = el.Icon;
+          return (
+            <div
+              key={el.id}
+              className="absolute text-teal-600/40 dark:text-teal-300/40 transition-colors duration-300"
+              style={{
+                top: el.top,
+                left: el.left,
+                '--target-opacity': el.opacity,
+                animation: `drift ${el.duration} linear infinite`,
+                animationDelay: el.delay,
+                filter: 'drop-shadow(0 0 10px rgba(45, 212, 191, 0.2))'
+              } as React.CSSProperties}
+            >
+              <Icon 
+                size={el.size} 
+                strokeWidth={1.5} 
+                style={{ transform: `rotate(${el.rotation}deg)` }} 
+              />
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Elegant subtle grid to ground the design */}
+      <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.04] transition-opacity duration-300" 
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0L120 120M120 0L0 120' stroke='%23000' stroke-width='0.5' fill='none'/%3E%3C/svg%3E")`,
-          backgroundSize: '120px 120px',
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M80 0L0 0 0 80' stroke='%2314b8a6' stroke-width='0.5' fill='none'/%3E%3C/svg%3E")`,
+          backgroundSize: '80px 80px',
         }}
       />
       
-      {/* Luxury accent elements - reduced opacity to match transparent background */}
-      <div className="absolute top-[10%] right-[10%] w-80 h-80 rounded-full bg-gradient-to-br from-gold-200/3 to-gold-500/3 dark:from-gold-200/3 dark:to-gold-500/5 blur-2xl" />
-      <div className="absolute bottom-[15%] left-[5%] w-96 h-96 rounded-full bg-gradient-to-tr from-slate-300/5 to-slate-500/3 dark:from-slate-700/5 dark:to-slate-600/3 blur-3xl" />
-      
-      {/* Subtle shimmer effect */}
-      <div className="absolute inset-0 opacity-5 dark:opacity-10">
-        <div className="absolute top-0 right-[20%] h-full w-[1px] bg-gradient-to-b from-transparent via-gold-300/40 to-transparent animate-shimmer-slow"></div>
-        <div className="absolute top-0 left-[30%] h-full w-[1px] bg-gradient-to-b from-transparent via-gold-200/30 to-transparent animate-shimmer-slow" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute top-0 left-[70%] h-full w-[1px] bg-gradient-to-b from-transparent via-gold-300/20 to-transparent animate-shimmer-slow" style={{ animationDelay: '3.5s' }}></div>
+      {/* Shimmering vertical light rays */}
+      <div className="absolute inset-0 opacity-30">
+        <div className="absolute top-0 right-[25%] h-[200%] w-[1px] bg-gradient-to-b from-transparent via-teal-500/30 to-transparent" style={{ animation: 'shimmerVertical 15s linear infinite' }}></div>
+        <div className="absolute top-0 left-[35%] h-[200%] w-[1px] bg-gradient-to-b from-transparent via-cyan-400/30 to-transparent" style={{ animation: 'shimmerVertical 20s linear infinite', animationDelay: '5s' }}></div>
+        <div className="absolute top-0 left-[75%] h-[200%] w-[1px] bg-gradient-to-b from-transparent via-teal-300/30 to-transparent" style={{ animation: 'shimmerVertical 18s linear infinite', animationDelay: '10s' }}></div>
       </div>
-      
-      {/* Minimal floating elements */}
-      <div className="absolute top-[20%] left-[15%] w-3 h-3 rounded-full bg-gold-300/10 dark:bg-gold-300/15 animate-float-slow"></div>
-      <div className="absolute top-[70%] right-[20%] w-2 h-2 rounded-full bg-gold-300/15 dark:bg-gold-300/20 animate-float-slow" style={{ animationDelay: '2s' }}></div>
-      <div className="absolute top-[50%] left-[60%] w-4 h-4 rounded-full bg-gold-300/10 dark:bg-gold-300/15 animate-float-slow" style={{ animationDelay: '1s' }}></div>
-      
-      {/* Very subtle grid overlay */}
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwMCAwdjEwMEgwVjB6IiBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAiIHN0cm9rZS1vcGFjaXR5PSIwLjAyIiBzdHJva2Utd2lkdGg9IjAuNSIvPjwvc3ZnPg==')] opacity-15 dark:opacity-5" />
     </div>
   );
 };

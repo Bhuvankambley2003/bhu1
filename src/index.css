@@ -7,90 +7,90 @@
 
 @layer base {
   :root {
-    /* Light theme - Refined blue-slate professional palette */
-    --background: 210 45% 98%;
-    --foreground: 224 71% 4%;
+    /* Light theme - Refined teal professional palette */
+    --background: 180 20% 99%;
+    --foreground: 175 40% 5%;
 
     --card: 0 0% 100%;
-    --card-foreground: 224 71% 4%;
+    --card-foreground: 175 40% 5%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 224 71% 4%;
+    --popover-foreground: 175 40% 5%;
 
-    /* Main accent - Rich blue with good contrast */
-    --primary: 220 85% 30%; /* Deep blue */
-    --primary-foreground: 210 40% 98%;
+    /* Main accent - Teal */
+    --primary: 173 80% 35%; /* Deep teal */
+    --primary-foreground: 180 20% 99%;
 
-    --secondary: 215 25% 93%;
-    --secondary-foreground: 220 85% 30%;
+    --secondary: 173 20% 92%;
+    --secondary-foreground: 173 80% 35%;
 
-    --muted: 215 25% 93%;
-    --muted-foreground: 220 20% 40%; /* Softer blue-gray for secondary text */
+    --muted: 173 20% 92%;
+    --muted-foreground: 173 20% 40%;
 
-    /* Signature accent color - Vibrant yet professional */
-    --accent: 210 100% 35%; /* Slightly brighter blue than primary */
+    /* Signature accent color - Light Teal */
+    --accent: 173 70% 45%; /* Teal */
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 210 100% 35%;
+    --border: 173 20% 90%;
+    --input: 173 20% 90%;
+    --ring: 173 70% 45%;
 
     --radius: 0.75rem;
 
     /* Sidebar with subtle distinction from main content */
-    --sidebar-background: 210 50% 98%;
-    --sidebar-foreground: 224 71% 4%;
-    --sidebar-primary: 220 85% 30%;
+    --sidebar-background: 180 20% 98%;
+    --sidebar-foreground: 175 40% 5%;
+    --sidebar-primary: 173 80% 35%;
     --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 214 32% 95%;
-    --sidebar-accent-foreground: 224 71% 4%;
-    --sidebar-border: 214 32% 91%;
-    --sidebar-ring: 220 85% 30%;
+    --sidebar-accent: 173 20% 92%;
+    --sidebar-accent-foreground: 175 40% 5%;
+    --sidebar-border: 173 20% 90%;
+    --sidebar-ring: 173 70% 45%;
   }
 
   .dark {
-    /* Dark theme - Refined deep slate with blue accents */
-    --background: 224 71% 4%; /* Deep blue-gray background */
-    --foreground: 210 40% 98%;
+    /* Dark theme - Refined deep slate with teal accents */
+    --background: 175 40% 4%; /* Deep teal-gray background */
+    --foreground: 180 20% 98%;
 
-    --card: 222 47% 11%;
-    --card-foreground: 210 40% 98%;
+    --card: 175 40% 8%;
+    --card-foreground: 180 20% 98%;
 
-    --popover: 222 47% 11%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 175 40% 8%;
+    --popover-foreground: 180 20% 98%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 220 85% 30%;
+    --primary: 180 20% 98%;
+    --primary-foreground: 173 80% 35%;
 
-    --secondary: 217 33% 17%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 175 30% 15%;
+    --secondary-foreground: 180 20% 98%;
 
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 65%; /* Improved readability for secondary text */
+    --muted: 175 30% 15%;
+    --muted-foreground: 175 20% 65%;
 
     /* Vibrant accent that pops against dark background */
-    --accent: 210 100% 79%; /* Bright blue that stands out in dark mode */
-    --accent-foreground: 210 40% 98%;
+    --accent: 171 77% 64%; /* Teal-400 */
+    --accent-foreground: 175 40% 4%;
 
     --destructive: 0 63% 31%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
-    --ring: 210 100% 50%;
+    --border: 175 30% 15%;
+    --input: 175 30% 15%;
+    --ring: 171 77% 64%;
 
     /* Sidebar with subtle depth against main background */
-    --sidebar-background: 222 47% 11%;
-    --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 210 40% 98%;
-    --sidebar-primary-foreground: 220 85% 30%;
-    --sidebar-accent: 217 33% 17%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 217 33% 17%;
-    --sidebar-ring: 210 100% 50%;
+    --sidebar-background: 175 40% 8%;
+    --sidebar-foreground: 180 20% 98%;
+    --sidebar-primary: 180 20% 98%;
+    --sidebar-primary-foreground: 173 80% 35%;
+    --sidebar-accent: 175 30% 15%;
+    --sidebar-accent-foreground: 180 20% 98%;
+    --sidebar-border: 175 30% 15%;
+    --sidebar-ring: 171 77% 64%;
   }
 }
 
@@ -292,4 +292,22 @@
   bottom: -40px; /* Moved up slightly */
   line-height: 1;
   z-index: -1;
+}
+
+/* Luxury Background Animations */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.1; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes drift {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+  10% { opacity: var(--target-opacity, 0.4); }
+  90% { opacity: var(--target-opacity, 0.4); }
+  100% { transform: translateY(-120px) rotate(25deg); opacity: 0; }
+}
+
+@keyframes shimmerVertical {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
 }
