@@ -4,12 +4,11 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { AnimatePresence } from "framer-motion"; // Add this import
+import { AnimatePresence } from "framer-motion";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import Loader from "./components/Loader"; // Import the new Loader
-import CursorFollower from "./components/CursorFollower"; // Add this import
+import Loader from "./components/Loader";
 import "./App.css";
 
 const queryClient = new QueryClient();
@@ -18,7 +17,7 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 2500); // Keep the same loading time
+    const timer = setTimeout(() => setIsLoading(false), 2500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -33,11 +32,9 @@ const App = () => {
               <Loader key="loader" finishLoading={() => setIsLoading(false)} />
             ) : (
               <>
-                <CursorFollower /> {/* Add the cursor follower */}
                 <BrowserRouter>
                   <Routes>
                     <Route path="/" element={<Index />} />
-                    {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                     <Route path="*" element={<NotFound />} />
                   </Routes>
                 </BrowserRouter>

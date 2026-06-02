@@ -30,10 +30,10 @@ const AnimatedBackground: React.FC<{ className?: string }> = ({ className }) => 
 
   return (
     <div className={cn("fixed inset-0 -z-10 overflow-hidden bg-background transition-colors duration-300", className)}>
-      {/* Animated Gradient Orbs - Teal colors */}
-      <div className="absolute top-[-20%] left-[-10%] w-[60vw] h-[60vw] rounded-full bg-gradient-to-br from-teal-400/20 via-teal-300/10 to-transparent blur-[120px] animate-float" style={{ animationDuration: '15s' }} />
-      <div className="absolute bottom-[-20%] right-[-10%] w-[70vw] h-[70vw] rounded-full bg-gradient-to-tl from-cyan-500/15 via-teal-500/10 to-transparent blur-[150px] animate-float" style={{ animationDuration: '20s', animationDelay: '5s' }} />
-      <div className="absolute top-[40%] right-[10%] w-[40vw] h-[40vw] rounded-full bg-gradient-to-tr from-emerald-400/15 via-transparent to-transparent blur-[100px] animate-float" style={{ animationDuration: '18s', animationDelay: '2s' }} />
+      {/* Animated Gradient Orbs - Blueish Teal colors */}
+      <div className="absolute top-[-20%] left-[-10%] w-[60vw] h-[60vw] rounded-full bg-gradient-to-br from-cyan-400/20 via-sky-300/10 to-transparent blur-[120px] animate-float" style={{ animationDuration: '15s' }} />
+      <div className="absolute bottom-[-20%] right-[-10%] w-[70vw] h-[70vw] rounded-full bg-gradient-to-tl from-sky-500/15 via-cyan-500/10 to-transparent blur-[150px] animate-float" style={{ animationDuration: '20s', animationDelay: '5s' }} />
+      <div className="absolute top-[40%] right-[10%] w-[40vw] h-[40vw] rounded-full bg-gradient-to-tr from-cyan-400/15 via-transparent to-transparent blur-[100px] animate-float" style={{ animationDuration: '18s', animationDelay: '2s' }} />
       
       {/* Floating Doodle Elements Layer */}
       <div className="absolute inset-0 pointer-events-none">
@@ -42,14 +42,14 @@ const AnimatedBackground: React.FC<{ className?: string }> = ({ className }) => 
           return (
             <div
               key={el.id}
-              className="absolute text-teal-600/40 dark:text-teal-300/40 transition-colors duration-300"
+              className="absolute text-cyan-600/40 dark:text-cyan-300/40 transition-colors duration-200"
               style={{
                 top: el.top,
                 left: el.left,
                 '--target-opacity': el.opacity,
                 animation: `drift ${el.duration} linear infinite`,
                 animationDelay: el.delay,
-                filter: 'drop-shadow(0 0 10px rgba(45, 212, 191, 0.2))'
+                filter: 'drop-shadow(0 0 10px rgba(34, 211, 238, 0.2))'
               } as React.CSSProperties}
             >
               <Icon 
@@ -65,16 +65,16 @@ const AnimatedBackground: React.FC<{ className?: string }> = ({ className }) => 
       {/* Elegant subtle grid to ground the design */}
       <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.04] transition-opacity duration-300" 
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M80 0L0 0 0 80' stroke='%2314b8a6' stroke-width='0.5' fill='none'/%3E%3C/svg%3E")`,
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M80 0L0 0 0 80' stroke='%230891b2' stroke-width='0.5' fill='none'/%3E%3C/svg%3E")`,
           backgroundSize: '80px 80px',
         }}
       />
       
       {/* Shimmering vertical light rays */}
       <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-0 right-[25%] h-[200%] w-[1px] bg-gradient-to-b from-transparent via-teal-500/30 to-transparent" style={{ animation: 'shimmerVertical 15s linear infinite' }}></div>
-        <div className="absolute top-0 left-[35%] h-[200%] w-[1px] bg-gradient-to-b from-transparent via-cyan-400/30 to-transparent" style={{ animation: 'shimmerVertical 20s linear infinite', animationDelay: '5s' }}></div>
-        <div className="absolute top-0 left-[75%] h-[200%] w-[1px] bg-gradient-to-b from-transparent via-teal-300/30 to-transparent" style={{ animation: 'shimmerVertical 18s linear infinite', animationDelay: '10s' }}></div>
+        <div className="absolute top-0 right-[25%] h-[200%] w-[1px] bg-gradient-to-b from-transparent via-cyan-500/30 to-transparent" style={{ animation: 'shimmerVertical 15s linear infinite' }}></div>
+        <div className="absolute top-0 left-[35%] h-[200%] w-[1px] bg-gradient-to-b from-transparent via-sky-400/30 to-transparent" style={{ animation: 'shimmerVertical 20s linear infinite', animationDelay: '5s' }}></div>
+        <div className="absolute top-0 left-[75%] h-[200%] w-[1px] bg-gradient-to-b from-transparent via-cyan-300/30 to-transparent" style={{ animation: 'shimmerVertical 18s linear infinite', animationDelay: '10s' }}></div>
       </div>
     </div>
   );

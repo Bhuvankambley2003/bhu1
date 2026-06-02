@@ -1,47 +1,42 @@
 import React, { useEffect, useState } from 'react';
+import Navigation from '@/components/Navigation';
 import Header from '@/components/Header';
 import Resume from '@/components/Resume';
 import Projects from '@/components/Projects';
 import Contact from '@/components/Contact';
-import Navigation from '@/components/Navigation';
-import AnimatedBackground from '@/components/AnimatedBackground';
-import { ArrowUp } from 'lucide-react';
+import EmailSidebar from '@/components/EmailSidebar';
+import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
+import { ArrowUp } from 'lucide-react';
 
 const Index = () => {
   const [showScrollButton, setShowScrollButton] = useState(false);
 
   useEffect(() => {
-    // Intersection Observer for scroll animations
-    const animatedElements = document.querySelectorAll('.animate-on-scroll');
-    
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-    
-    animatedElements.forEach((element) => {
-      observer.observe(element);
-    });
-    
-    // Show/hide scroll to top button based on scroll position
+    // Add CV fonts to document head
+    const link = document.createElement('link');
+    link.href = 'https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap';
+    link.rel = 'stylesheet';
+    document.head.appendChild(link);
+
+    // Initial smooth appearance of the whole page
+    document.body.classList.remove('opacity-0');
+    document.body.classList.add('opacity-100', 'transition-opacity', 'duration-1000');
+
+    // Handle scroll events
     const handleScroll = () => {
-      setShowScrollButton(window.scrollY > 300);
+      // Show/hide scroll to top button
+      if (window.scrollY > 500) {
+        setShowScrollButton(true);
+      } else {
+        setShowScrollButton(false);
+      }
     };
-    
+
     window.addEventListener('scroll', handleScroll);
-    
     return () => {
-      animatedElements.forEach((element) => {
-        observer.unobserve(element);
-      });
       window.removeEventListener('scroll', handleScroll);
+      document.head.removeChild(link);
     };
   }, []);
 
@@ -53,46 +48,58 @@ const Index = () => {
   };
 
   return (
-    <div className="relative min-h-screen overflow-hidden">
-      <AnimatedBackground />
+    <div className="min-h-screen bg-background selection:bg-accent/30 selection:text-accent font-sans text-foreground">
       <Navigation />
       
-      <main className="relative">
+      {/* Right Email Sidebar */}
+      <EmailSidebar />
+
+      <main className="flex flex-col items-center w-full min-h-screen">
         <Header />
         <Resume />
         <Projects />
         <Contact />
       </main>
-      
-      <footer className="py-8 sm:py-10 text-center text-foreground/70 backdrop-blur-sm border-t border-foreground/5">
-            <a 
-              href="https://github.com/Bhuvankambley2003" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="hover:text-accent transition-colors"
-            >
-              <div className="max-w-5xl mx-auto px-6">
-                <p className="text-sm">
-                  © {new Date().getFullYear()} Bhuvan Kambley. All rights reserved.{' '}
-                  
-                    
-                  
-                </p>
-                <p className="text-xs mt-2 text-foreground/50">Crafted with Passion</p>
-              </div>
-        </a>
+
+      <footer className="w-full py-6 text-center">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.4 }}
+          viewport={{ once: true }}
+        >
+          <a 
+            href="https://github.com/Bhuvankambley2003" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="font-mono text-xs text-muted-foreground hover:text-accent transition-colors p-4 inline-block"
+          >
+            <div>Designed &amp; Built by Bhuvan Kambley</div>
+          </a>
+        </motion.div>
       </footer>
-      
-      {/* Scroll to top button */}
-      <Button
-        onClick={scrollToTop}
-        className={`fixed bottom-4 sm:bottom-6 right-4 sm:right-6 size-10 sm:size-12 rounded-full shadow-lg bg-accent hover:bg-accent/90 text-white p-0 z-50 transition-all duration-300 ${
-          showScrollButton ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
-        }`}
-        aria-label="Scroll to top"
+
+      {/* Back to top button */}
+      <motion.div
+        className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-40 lg:hidden"
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ 
+          opacity: showScrollButton ? 1 : 0, 
+          scale: showScrollButton ? 1 : 0,
+          pointerEvents: showScrollButton ? 'auto' : 'none'
+        }}
+        transition={{ duration: 0.3 }}
       >
-        <ArrowUp size={20} />
-      </Button>
+        <Button
+          variant="outline"
+          size="icon"
+          onClick={scrollToTop}
+          className="rounded-full w-12 h-12 bg-background/80 backdrop-blur-md border-accent text-accent hover:bg-accent hover:text-background shadow-lg transition-all"
+          aria-label="Scroll to top"
+        >
+          <ArrowUp size={20} />
+        </Button>
+      </motion.div>
     </div>
   );
 };

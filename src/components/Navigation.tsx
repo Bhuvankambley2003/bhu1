@@ -1,165 +1,160 @@
 import React, { useState, useEffect } from 'react';
-import { cn } from '@/lib/utils';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
-import { ThemeToggle } from '@/components/ThemeToggle';
+import ThemeToggle from './ThemeToggle';
+import { Button } from './ui/button';
+
+const navItems = [
+  { name: 'About', href: '#about', number: '01.' },
+  { name: 'Experience', href: '#experience', number: '02.' },
+  { name: 'Work', href: '#projects', number: '03.' },
+  { name: 'Contact', href: '#contact', number: '04.' },
+];
 
 const Navigation: React.FC = () => {
-  const [activeSection, setActiveSection] = useState('home');
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  const sections = [
-    { id: 'home', label: 'Home' },
-    { id: 'ResumeSection', label: 'Resume' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'contact', label: 'Contact' },
-  ];
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-
-      // Check if page is scrolled for applying background to nav
-      if (scrollPosition > 20) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-
-      // Determine active section
-      const sectionElements = sections
-        .map((section) => {
-          const element = document.getElementById(section.id);
-          if (!element) return null;
-
-          const rect = element.getBoundingClientRect();
-          return {
-            id: section.id,
-            top: rect.top + window.scrollY,
-            bottom: rect.bottom + window.scrollY,
-          };
-        })
-        .filter(Boolean);
-
-      for (let i = sectionElements.length - 1; i >= 0; i--) {
-        const section = sectionElements[i];
-        if (!section) continue;
-
-        if (scrollPosition >= section.top - 300) {
-          setActiveSection(section.id);
-          break;
-        }
-      }
+      setIsScrolled(window.scrollY > 20);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
+  const scrollToSection = (href: string) => {
+    setIsMobileMenuOpen(false);
+    const element = document.querySelector(href);
     if (element) {
-      window.scrollTo({
-        top: element.offsetTop - 80,
-        behavior: 'smooth',
-      });
-      setMenuOpen(false);
+      element.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   return (
     <>
-      {/* Add overlay for blurring background content when mobile menu is open */}
-      {menuOpen && (
-        <div 
-          className="fixed inset-0 bg-background/80 backdrop-blur-md z-40"
-          onClick={() => setMenuOpen(false)}
-        />
-      )}
-      <nav
-        className={cn(
-          'fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-4 sm:px-6 md:px-10',
-          scrolled ? 'py-3 bg-transparent backdrop-blur-md' : 'py-6 bg-transparent'
-        )}
+      <motion.nav
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+          isScrolled 
+            ? 'py-4 bg-background/90 backdrop-blur-sm shadow-sm' 
+            : 'py-6 bg-transparent'
+        }`}
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       >
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <a
-            href="#home"
-            className="font-display text-2xl font-semibold text-primary hover:opacity-80 transition-opacity"
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection('home');
-            }}
+        <div className="max-w-[1400px] mx-auto px-6 sm:px-12 flex justify-between items-center">
+          {/* Logo */}
+          <motion.a 
+            href="#" 
+            className="text-2xl font-display font-bold text-accent tracking-tighter"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
-            B.
-          </a>
+            BK
+          </motion.a>
 
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center space-x-1">
-            {sections.map((section) => (
-              <button
-                key={section.id}
-                onClick={() => scrollToSection(section.id)}
-                className={cn(
-                  'px-4 py-2 rounded-md text-sm font-medium transition-all relative',
-                  activeSection === section.id
-                    ? 'text-accent'
-                    : 'text-foreground/80 hover:text-foreground group'
-                )}
-              >
-                <span className="relative">
-                  {section.label}
-                  {activeSection !== section.id && (
-                    <span className="absolute bottom-[-4px] left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300 ease-in-out" />
-                  )}
-                </span>
-                {activeSection === section.id && (
-                  <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-accent rounded-full" />
-                )}
-              </button>
-            ))}
-            <div className="ml-0 -translate-x-5">
-              <ThemeToggle />
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-8">
+            <div className="flex items-center gap-6">
+              {navItems.map((item, index) => (
+                <motion.button
+                  key={item.name}
+                  onClick={() => scrollToSection(item.href)}
+                  className="text-sm font-medium hover:text-accent transition-colors flex items-center group text-foreground/80"
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 * index }}
+                >
+                  <span className="text-accent font-mono text-xs mr-1.5">{item.number}</span>
+                  {item.name}
+                </motion.button>
+              ))}
             </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 * navItems.length }}
+            >
+              <Button 
+                variant="outline" 
+                className="border-accent text-accent hover:bg-accent/10 font-mono text-xs px-4 py-2 h-auto rounded"
+                onClick={() => window.open('/bhuvankambley-dev.pdf', '_blank')}
+              >
+                Resume
+              </Button>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 * (navItems.length + 1) }}
+              className="ml-2"
+            >
+              <ThemeToggle />
+            </motion.div>
           </div>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden flex items-center space-x-2">
+          {/* Mobile Menu Toggle */}
+          <div className="md:hidden flex items-center gap-4">
             <ThemeToggle />
-            <button
-              className="p-2 rounded-md text-foreground focus:outline-none"
-              onClick={() => setMenuOpen(!menuOpen)}
+            <button 
+              className="text-foreground z-50 relative"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle menu"
             >
-              {menuOpen ? <X size={24} /> : <Menu size={24} />}
+              {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
           </div>
         </div>
+      </motion.nav>
 
-        {/* Mobile menu */}
-        {menuOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-md shadow-lg px-6 py-4 flex flex-col space-y-2 animate-fade-in-up z-50">
-            {sections.map((section) => (
-              <button
-                key={section.id}
-                onClick={() => scrollToSection(section.id)}
-                className={cn(
-                  'px-4 py-3 rounded-md text-left text-sm font-medium transition-all relative',
-                  activeSection === section.id
-                    ? 'text-accent bg-accent/5'
-                    : 'text-foreground/80 hover:text-foreground hover:bg-foreground/5 group'
-                )}
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div 
+            className="fixed inset-0 bg-background/95 backdrop-blur-md z-30 flex flex-col justify-center items-center md:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <div className="flex flex-col items-center gap-8 text-xl">
+              {navItems.map((item, index) => (
+                <motion.button
+                  key={item.name}
+                  onClick={() => scrollToSection(item.href)}
+                  className="font-medium hover:text-accent transition-colors flex flex-col items-center gap-2"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 * index }}
+                >
+                  <span className="text-accent font-mono text-sm">{item.number}</span>
+                  {item.name}
+                </motion.button>
+              ))}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 * navItems.length }}
+                className="mt-4"
               >
-                <span className="relative">
-                  {section.label}
-                  {activeSection !== section.id && (
-                    <span className="absolute bottom-[-4px] left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300 ease-in-out" />
-                  )}
-                </span>
-              </button>
-            ))}
-          </div>
+                <Button 
+                  variant="outline" 
+                  className="border-accent text-accent hover:bg-accent/10 font-mono text-sm px-8 py-4 rounded"
+                  onClick={() => {
+                    window.open('/bhuvankambley-dev.pdf', '_blank');
+                    setIsMobileMenuOpen(false);
+                  }}
+                >
+                  Resume
+                </Button>
+              </motion.div>
+            </div>
+          </motion.div>
         )}
-      </nav>
+      </AnimatePresence>
     </>
   );
 };
