@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
-import ThemeToggle from './ThemeToggle';
 import { Button } from './ui/button';
+import ThemeToggle from './ThemeToggle';
 
 const navItems = [
   { name: 'About', href: '#about', number: '01.' },
@@ -56,49 +56,11 @@ const Navigation: React.FC = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            <div className="flex items-center gap-6">
-              {navItems.map((item, index) => (
-                <motion.button
-                  key={item.name}
-                  onClick={() => scrollToSection(item.href)}
-                  className="text-sm font-medium hover:text-accent transition-colors flex items-center group text-foreground/80"
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 * index }}
-                >
-                  <span className="text-accent font-mono text-xs mr-1.5">{item.number}</span>
-                  {item.name}
-                </motion.button>
-              ))}
-            </div>
-
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 * navItems.length }}
-            >
-              <Button 
-                variant="outline" 
-                className="border-accent text-accent hover:bg-accent/10 font-mono text-xs px-4 py-2 h-auto rounded"
-                onClick={() => window.open('/bhuvankambley-dev.pdf', '_blank')}
-              >
-                Resume
-              </Button>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 * (navItems.length + 1) }}
-              className="ml-2"
-            >
-              <ThemeToggle />
-            </motion.div>
+            {/* Nav items have moved to FloatingDock */}
           </div>
 
           {/* Mobile Menu Toggle */}
           <div className="md:hidden flex items-center gap-4">
-            <ThemeToggle />
             <button 
               className="text-foreground z-50 relative"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -138,18 +100,26 @@ const Navigation: React.FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 * navItems.length }}
-                className="mt-4"
+                className="mt-4 flex flex-col items-center gap-6"
               >
-                <Button 
-                  variant="outline" 
-                  className="border-accent text-accent hover:bg-accent/10 font-mono text-sm px-8 py-4 rounded"
-                  onClick={() => {
-                    window.open('/bhuvankambley-dev.pdf', '_blank');
-                    setIsMobileMenuOpen(false);
-                  }}
+                <ThemeToggle />
+                <motion.div
+                  whileHover={{ scale: 1.05, y: -3, boxShadow: "0px 8px 15px rgba(0, 0, 0, 0.2)" }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  className="inline-block"
                 >
-                  Resume
-                </Button>
+                  <Button 
+                    variant="outline" 
+                    className="border-accent text-accent hover:bg-accent/10 font-mono text-sm px-8 py-4 rounded transition-colors"
+                    onClick={() => {
+                      window.open('/bhuvankambley-dev.pdf', '_blank');
+                      setIsMobileMenuOpen(false);
+                    }}
+                  >
+                    Resume
+                  </Button>
+                </motion.div>
               </motion.div>
             </div>
           </motion.div>

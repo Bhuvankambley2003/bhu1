@@ -5,9 +5,11 @@ import Resume from '@/components/Resume';
 import Projects from '@/components/Projects';
 import Contact from '@/components/Contact';
 import EmailSidebar from '@/components/EmailSidebar';
+import About from '@/components/About';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowUp } from 'lucide-react';
+import FloatingDock from '@/components/FloatingDock';
 
 const Index = () => {
   const [showScrollButton, setShowScrollButton] = useState(false);
@@ -56,10 +58,13 @@ const Index = () => {
 
       <main className="flex flex-col items-center w-full min-h-screen">
         <Header />
+        <About />
         <Resume />
         <Projects />
         <Contact />
       </main>
+      
+      <FloatingDock />
 
       <footer className="w-full py-6 text-center">
         <motion.div
@@ -79,27 +84,30 @@ const Index = () => {
         </motion.div>
       </footer>
 
-      {/* Back to top button */}
-      <motion.div
-        className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-40 lg:hidden"
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ 
-          opacity: showScrollButton ? 1 : 0, 
-          scale: showScrollButton ? 1 : 0,
-          pointerEvents: showScrollButton ? 'auto' : 'none'
-        }}
-        transition={{ duration: 0.3 }}
-      >
-        <Button
-          variant="outline"
-          size="icon"
-          onClick={scrollToTop}
-          className="rounded-full w-12 h-12 bg-background/80 backdrop-blur-md border-accent text-accent hover:bg-accent hover:text-background shadow-lg transition-all"
-          aria-label="Scroll to top"
+      {/* Fixed Bottom Right Controls */}
+      <div className="fixed bottom-6 right-6 md:bottom-8 lg:right-24 z-50 flex flex-col items-center gap-4">
+        {/* Back to top button */}
+        <motion.div
+          className="lg:hidden"
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ 
+            opacity: showScrollButton ? 1 : 0, 
+            scale: showScrollButton ? 1 : 0,
+            pointerEvents: showScrollButton ? 'auto' : 'none'
+          }}
+          transition={{ duration: 0.3 }}
         >
-          <ArrowUp size={20} />
-        </Button>
-      </motion.div>
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={scrollToTop}
+            className="rounded-full w-12 h-12 bg-background/80 backdrop-blur-md border-accent text-accent hover:bg-accent hover:text-background shadow-lg transition-all"
+            aria-label="Scroll to top"
+          >
+            <ArrowUp size={20} />
+          </Button>
+        </motion.div>
+      </div>
     </div>
   );
 };

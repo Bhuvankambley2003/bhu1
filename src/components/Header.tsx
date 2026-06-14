@@ -7,7 +7,7 @@ const Header: React.FC = () => {
   return (
     <section 
       id="home" 
-      className="relative min-h-screen flex flex-col justify-center items-start px-4 sm:px-6 md:px-8 lg:px-12 pt-20 pb-16 max-w-[1000px] mx-auto"
+      className="relative min-h-[90vh] flex flex-col justify-center items-start px-4 sm:px-6 md:px-8 lg:px-12 pt-[18vh] pb-20 max-w-[1000px] mx-auto"
     >
       {/* Social icons with vertical line starting from bottom */}
       <motion.div 
@@ -16,7 +16,6 @@ const Header: React.FC = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.4, delay: 0.5 }}
       >
-        {/* Social Links - Positioned above the line */}
         <div className="flex flex-col items-center gap-5 mb-5">
           <motion.a 
             href="https://github.com/Bhuvankambley2003" 
@@ -59,11 +58,10 @@ const Header: React.FC = () => {
             <Instagram size={20} />
           </motion.a>
         </div>
-        
-        {/* Vertical line */}
         <div className="w-[1px] h-[90px] bg-muted-foreground/40" />
       </motion.div>
       
+      {/* Left aligned hero content */}
       <div className="w-full flex flex-col items-start justify-center md:pl-[60px] lg:pl-[100px]">
         {/* Text Content - Left aligned, minimal stack */}
         <motion.div 
@@ -73,7 +71,7 @@ const Header: React.FC = () => {
           transition={{ duration: 0.4, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
         >
           <motion.p 
-            className="text-accent font-mono text-sm sm:text-base mb-4 md:mb-5 ml-1"
+            className="text-accent font-mono text-sm sm:text-base mb-3 md:mb-4 ml-1"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.15 }}
@@ -91,7 +89,7 @@ const Header: React.FC = () => {
           </motion.h1>
 
           <motion.h2 
-            className="text-[clamp(28px,5vw,56px)] font-bold text-muted-foreground leading-[1.1] tracking-tight mt-2 mb-6"
+            className="text-[clamp(28px,5vw,56px)] font-bold text-muted-foreground leading-[1.1] tracking-tight mt-1 mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.35 }}
@@ -100,7 +98,7 @@ const Header: React.FC = () => {
           </motion.h2>
 
           <motion.p 
-            className="text-muted-foreground text-base md:text-lg leading-relaxed max-w-[540px] mt-4 mb-12"
+            className="text-muted-foreground text-base md:text-lg leading-relaxed max-w-[540px] mt-2 mb-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.4, delay: 0.45 }}
@@ -111,27 +109,34 @@ const Header: React.FC = () => {
           
           {/* CTA Button */}
           <motion.div 
-              className="mt-2"
+              className="mt-0"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.55 }}
             >
-              <Button 
-                variant="outline"
-                className="rounded border-accent text-accent font-mono text-sm px-7 py-6 transition-all hover:bg-accent/10 hover:text-accent" 
-                size="lg"
-                onClick={() => {
-                  const element = document.querySelector('#projects');
-                  if (element) element.scrollIntoView({ behavior: 'smooth' });
-                }}
+              <motion.div
+                whileHover={{ scale: 1.05, y: -5, boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.2)" }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                className="inline-block"
               >
-                Check out my work!
-              </Button>
+                <Button 
+                  variant="outline"
+                  className="rounded border-accent text-accent font-mono text-sm px-7 py-6 transition-colors hover:bg-accent/10 hover:text-accent" 
+                  size="lg"
+                  onClick={() => {
+                    const element = document.querySelector('#projects');
+                    if (element) element.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                >
+                  Check out my work!
+                </Button>
+              </motion.div>
           </motion.div>
           
           {/* Social Links - Mobile only (horizontal) */}
           <motion.div 
-            className="flex lg:hidden items-center gap-6 mt-12"
+            className="flex lg:hidden items-center gap-6 mt-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3, delay: 0.65 }}
